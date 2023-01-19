@@ -1,0 +1,37 @@
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(href="/css/App.css" rel="stylesheet")
+    link(rel='preconnect' href='https://fonts.googleapis.com')
+    link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
+    link(href='https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins&display=swap' rel='stylesheet')
+  body
+    .navbar.bg-pink-500.text-white.px-6.font-pp(class="lg:px-12")
+      .navbar-start
+        .dropdown
+          label.btn.btn-ghost.btn-circle(tabindex='0')
+            svg.h-5.w-5(xmlns='http://www.w3.org/2000/svg' fill='none' viewbox='0 0 24 24' stroke='currentColor')
+              path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 6h16M4 12h16M4 18h7')
+          ul.menu.menu-compact.dropdown-content.mt-3.p-2.shadow.bg-base-100.rounded-box.w-52.text-black(tabindex='0')
+            li
+              a(href="/admin") Dashboard
+            li
+              a(href="/admin/appointment") Daftar Reservasi
+            li 
+              a(href="/admin/service") Daftar Layanan
+      .navbar-center.hidden(class="lg:flex")
+        a.btn.btn-ghost.normal-case.text-3xl.font-ds.gap-4(href="/admin") 
+          label.avatar
+            .w-10.rounded-full
+              img(src="https://i.ibb.co/FbgNc2d/icon-RSB.jpg") 
+          | Rumah Sayang Bunda
+      .navbar-end
+        .dropdown.dropdown-end
+          label.btn.btn-ghost.btn-circle.avatar(tabindex='0')
+            .w-10.rounded-full
+              img(src="https://i.ibb.co/jMnxW8f/user.png")
+          ul.menu.menu-compact.dropdown-content.mt-3.p-2.shadow.bg-base-100.rounded-box.w-52.text-black(tabindex='0')
+            li
+              a(href="/admin/signout") Logout
+        

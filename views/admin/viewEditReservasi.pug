@@ -1,0 +1,78 @@
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(href="/css/App.css" rel="stylesheet")
+    link(rel='preconnect' href='https://fonts.googleapis.com')
+    link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
+    link(href='https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins&display=swap' rel='stylesheet')
+  body
+    include navbar.pug
+    h1.font-bold.text-2xl.text-center.mt-6.mb-4(class="lg:text-4xl lg:mb-0") Edit Data Reservasi
+    .w-full.flex.flex-col.justify-center
+      form(action="/admin/appointment/update/"+ appointmentData.id method='get' onClick="return test()")
+        .w-full.flex.flex-col.justify-center.items-center.px-10(class="lg:px-24 md:px-24")
+          .flex.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md")
+            label.label
+              span.label-text Nama
+          input.input.input-bordered.w-full.max-w-xs.text-black(name='input_name' readonly type='text' value=appointmentData.data().name placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md")
+          .flex.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md")
+            label.label
+              span.label-text ID Reservasi
+          input.input.input-bordered.w-full.max-w-xs.text-black(name='appointmentId' type="text" value=appointmentData.id readonly class="lg:max-w-lg md:max-w-md")
+          .flex.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md")
+            label.label
+              span.label-text Tanggal Reservasi
+          input.input.input-bordered.w-full.max-w-xs(id="datefield" name="date" type='date' min='1899-01-01' max='2030-10-16'  class="lg:max-w-lg md:max-w-md")
+          .flex.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md")
+            label.label
+              span.label-text Layanan Reservasi
+          select.select.select-bordered.w-full.max-w-xs(name="serviceId" class="lg:max-w-lg md:max-w-md")
+            option(value="" selected="" disabled="") Pilih layanan
+            each data in servicesData
+              option(value=data.id)= data.data().name
+          .flex.flex-col.justify-start.w-full.items-center(class="md:justify-center lg:max-w-lg md:max-w-md")
+            button.btn(class="bg-pink-500 border-none hover:bg-pink-900 w-full max-w-xs mt-4", type="submit") Cari data
+      - let sessions = ["08:00", "09:30", "11:00", "13:00", "14:30", "16:00"]
+      - let telahReservasi = " - Telah Direservasi"
+      - let i = 1  
+      .flex.flex-col.my-4.px-10.gap-8.justify-center.items-center(class="lg:flex-row lg:justify-center lg:px-32 lg:flex-wrap")
+        each session1 in sessions
+          - let pilih = false
+          if(!sessionsData)
+            div
+          else
+            each datasessionss in sessionsData
+              if datasessionss.time===session1
+              - pilih = true
+              - break
+            if(!pilih)
+              .card.w-80.max-w-lg.bg-pink-100.shadow-2xl.text-black
+                form(action="/admin/appointment/update/"+ appointmentData.id method="post")
+                  .card-body.items-center.text-center
+                    each data in servicesData 
+                      if(data.id === serviceId ) 
+                        h2.card-title= `Sesi ${i++} ${data.data().name}`
+                        - break     
+                    p=date
+                    p=session1 + " WIB"
+                    input(hidden name="time" type="text" value=session1)
+                    input(hidden name="serviceId" type="text" value=serviceId)
+                    input(hidden name="date" type="date" value=date)
+                    .card-actions.justify-end
+                      button.btn.btn-primary(type="submit" class="bg-pink-500 border-none hover:bg-pink-900") Pilih Sesi
+            else 
+              .card.w-80.max-w-lg.bg-pink-100.shadow-2xl.text-black
+                .card-body.items-center.text-center
+                  each data in servicesData 
+                    if(data.id === serviceId ) 
+                      h2.card-title= `Sesi ${i++} ${data.data().name}`
+                      - break 
+                  p=date
+                  p=session1 + " WIB " + telahReservasi
+                  .card-actions.justify-end
+                    button.btn.btn-primary(disabled class="bg-pink-500 border-none hover:bg-pink-900 w-full") Pilih Sesi
+    script(src="/js/home.js")
+    
+
+

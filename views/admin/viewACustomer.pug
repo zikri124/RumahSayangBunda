@@ -1,0 +1,51 @@
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(href="/css/App.css" rel="stylesheet")
+    link(rel='preconnect' href='https://fonts.googleapis.com')
+    link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
+    link(href='https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins&display=swap' rel='stylesheet')
+  body
+    include navbar.pug
+    div.flex.flex-col.font-ds(class="lg:flex-row lg:pt-24")
+      div.w-full.flex.flex-col.px-10.py-10(class="lg:pl-56 lg:py-0 lg:px-0")
+        label.font-bold.text-xl.font-pp.text-center(class="lg:text-start") Profil Customer
+        .justify-center.items-center.flex.flex-col.font-pp
+          .form-control.w-full
+            label.label
+              span.label-text Nama
+            input.input.input-bordered.w-full.max-w-md(value=customerData.data().name type='text'  disabled)
+            label.label
+              span.label-text No. Hp
+            input.input.input-bordered.w-full.max-w-md(value=customerData.data().numWa type='text'  disabled)
+            label.label
+              span.label-text Jenis Kelamin
+            input.input.input-bordered.w-full.max-w-md(value=customerData.data().sex type='text'  disabled)
+            label.label
+              span.label-text Tanggal Lahir
+            input.input.input-bordered.w-full.max-w-md(value=customerData.data().dateOfBirth type='text'  disabled)
+      div.flex.flex-col.items-center.w-full.px-10(class="lg:items-start lg:px-0")
+        label.font-bold.text-xl.font-pp.text-center(class="lg:text-start") Daftar layanan yang pernah dilakukan
+        .overflow-x-auto.mx-10.my-8.overflow-y-auto.h-32.font-pp.border.rounded-t-lg(class="lg:mx-4")
+          table.table.table-compact.w-full
+            thead
+              tr
+                th
+                th Layanan
+                th Waktu
+                th Status
+            tbody
+            - let i = 1
+            each dataVisits in visitsData
+              tr
+                th= i++
+                each dataServices in servicesData
+                  if dataVisits.data().serviceId===dataServices.id
+                    td= dataServices.data().name
+                    - break
+                td= dataVisits.data().time
+                td= dataVisits.data().status
+    
+
+

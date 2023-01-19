@@ -1,0 +1,52 @@
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+    link(href="/css/App.css" rel="stylesheet")
+    link(rel="preconnect" href="https://fonts.googleapis.com")
+    link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+    link(href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet")
+  body
+    .font-pp(class="bg-[#FFECF1]")
+      .carousel.w-full(class="lg:h-4/6")
+        #item1.carousel-item.w-full
+          img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src='https://i.postimg.cc/XqV5MJxv/carousel1.png')
+        |  
+        #item2.carousel-item.w-full
+          img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src="https://i.postimg.cc/5ts8VNBs/11.png")
+        |  
+        #item3.carousel-item.w-full
+          img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src='https://i.postimg.cc/Pxw1j9mC/12.png')
+        |
+        #item4.carousel-item.w-full
+          img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src='https://i.postimg.cc/Pxw1j9mC/12.png')
+      |  
+      .flex.justify-center.w-full.py-2.gap-2
+        a.btn.btn-xs(href='#item1' class="bg-[#FFC9D7] border-none text-black hover:bg-[#f391ab]") 1
+        |  
+        a.btn.btn-xs(href='#item2' class="bg-[#FFC9D7] border-none text-black hover:bg-[#f391ab]") 2
+        |  
+        a.btn.btn-xs(href='#item3' class="bg-[#FFC9D7] border-none text-black hover:bg-[#f391ab]") 3
+        |
+        a.btn.btn-xs(href='#item4' class="bg-[#FFC9D7] border-none text-black hover:bg-[#f391ab]") 4
+      .flex.flex-col.justify-center.items-center.text-black.py-4
+        h1.font-bold.font-ds.text-3xl(class="lg:text-7xl") Rumah Sayang Bunda
+        p.px-8.text-center.mt-4(class="lg:text-xl") Percayakan Kesahatan Bunda & Bayi Bersama Kami
+      form(action="/appointment/new/form2" method="get" onClick="return test()")
+        .form-control.w-full.flex.flex-col.justify-center.items-center.px-8
+          .flex.justify-start.w-full(class="lg:max-w-lg md:max-w-md ")
+            label.label
+              span.label-text(class="after:ml-0.5 after:content-['*'] after:text-red-500") Silahkan pilih tanggal untuk reservasi
+          input.input.input-bordered.w-full.max-w-xs(id="datefield" name="date" type='date' min='1899-01-01' max='2030-10-16'  class="lg:max-w-lg md:max-w-md" required="")
+          .flex.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md")
+            label.label
+              span.label-text(class="after:ml-0.5 after:content-['*'] after:text-red-500") Silahkan pilih layanan untuk reservasi
+          select.select.select-bordered.w-full.max-w-xs(name="serviceId" class="lg:max-w-lg md:max-w-md" required)
+            option(value="" selected="" disabled="") Pilih layanan
+            each data in servicesData
+              option(value=data.id)= data.data.name
+          button.btn(class="bg-[#FFC9D7] border-none text-black hover:text-white hover:bg-[#f391ab] mt-4", type="submit") Klik disini untuk reservasi
+      include footer.pug
+      script(src="/js/home.js")
+      

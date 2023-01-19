@@ -1,0 +1,67 @@
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(href="/css/App.css" rel="stylesheet")
+    link(rel='preconnect' href='https://fonts.googleapis.com')
+    link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
+    link(href='https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins&display=swap' rel='stylesheet')
+  body
+    .font-pp(class="bg-[#FFECF1]")
+      .flex.flex-col.justify-center.items-center.text-black.pt-8
+        h1.font-bold.font-ds.text-3xl(class="lg:text-7xl") Rumah Sayang Bunda
+        h2.px-12.mt-4.text-center(class="lg:text-xl") Percayakan Kesahatan Bunda & Bayi Bersama Kami
+        p.mt-4.mb-2(class="lg:text-xl") Isi data berikut untuk reservasi
+      form(action="/appointment/new/form2" id="form" method='post')
+        .form-control.w-full.flex.flex-col.justify-center.items-center.px-8
+          .flex.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md")
+            label.label
+              span.label-text Tanggal Reservasi
+          input.input.input-bordered.w-full.max-w-xs( disabled=''  value=date, class="lg:max-w-lg md:max-w-md")
+          .flex.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md")
+            label.label
+              span.label-text Layanan
+          input.input.input-bordered.w-full.max-w-xs( disabled=''  value=serviceData.data.name, class="lg:max-w-lg md:max-w-md")
+          input.input.hidden.input-bordered.w-full.max-w-xs(name='input_date' value=date, class="lg:max-w-lg md:max-w-md")
+          input.input.hidden.input-bordered.w-full.max-w-xs(name='input_serviceId' value=serviceId, class="lg:max-w-lg md:max-w-md")
+          .flex.flex-col.justify-start.w-full(class="lg:max-w-lg md:max-w-md text-red-500")
+            label.label
+              span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") Nama
+            input.input.input-bordered.w-full.max-w-xs.text-black(name='input_name' required='' type='text', placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md")
+          .flex.flex-col.justify-start.w-full(class="lg:max-w-lg md:max-w-md text-red-500")
+            label.label
+              span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") No. Hp (Nomer WhatsApp Gunakan Format : 6282333999xxx)
+            input.input.input-bordered.w-full.max-w-xs.text-black(name='no_hp' id="phoneNumber" required='' maxlength="13" minlength="10" type='tel'  placeholder='Contoh : 6282333999xxx' class="lg:max-w-lg md:max-w-md")
+          .flex.flex-col.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md text-red-500")
+            label.label
+              span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") Tanggal Lahir
+            input.input.input-bordered.w-full.max-w-xs.text-black(name='input_dob' type='date', placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md" required='')
+          .flex.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md")
+            label.label
+              span.label-text Nama Instagram
+          input.input.input-bordered.w-full.max-w-xs(name='nama_ig' type='text', placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md")
+          .flex.flex-col.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md text-red-500")
+            label.label
+              span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") Pilih jam reservasi
+            - let sessions = ["08:00", "09:30", "11:00", "13:00", "14:30", "16:00"]
+            - let telahReservasi = " - Telah Direservasi"
+            select.select.select-bordered.w-full.max-w-xs.text-black(name="input_time" required='' class="lg:max-w-lg md:max-w-md")
+              option(disabled='' selected='' value="") Pilih jam reservasi
+              each session1 in sessions
+                - let pilih = false 
+                each datasessionss in sessionsData
+                  if datasessionss.time===session1
+                    - pilih = true
+                    - break
+                if(!pilih)
+                  option=session1
+                else 
+                  option(disabled)=session1 + telahReservasi
+          div.flex.flex-row.gap-2.mb-2
+            a(href="/appointment/new/form1")     
+              label.btn.mt-4(class="bg-[#FFC9D7] border-none text-black hover:text-white hover:bg-[#f391ab] lg:px-20") kembali  
+            button.btn.mt-4(type='submit' class="bg-[#FFC9D7] border-none text-black hover:text-white hover:bg-[#f391ab] lg:px-20") submit
+      include footer.pug
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js")
+    script(src="/js/validationReservation.js")

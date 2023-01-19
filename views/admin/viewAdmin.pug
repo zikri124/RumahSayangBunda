@@ -1,0 +1,99 @@
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(href="/css/App.css" rel="stylesheet")
+    link(rel='preconnect' href='https://fonts.googleapis.com')
+    link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
+    link(href='https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins&display=swap' rel='stylesheet')
+  body
+    .bg-white.min-h-screen.font-pp
+      include navbar.pug
+      h1.font-bold.text-2xl.text-center.mt-6.mb-4(class="lg:text-4xl lg:mb-0") Daftar Admin
+      // The button to open modal
+      .flex.justify-start.items-start.mx-10(class="lg:mx-24")
+        label.btn.btn-sm.mt-4.normal-case.gap-2(for='add-user' class="bg-pink-500 border-none hover:bg-pink-900") 
+          svg.w-6.h-6(xmlns='http://www.w3.org/2000/svg' fill='none' viewbox='0 0 24 24' stroke-width='1.5' stroke='currentColor')
+            path(stroke-linecap='round' stroke-linejoin='round' d='M12 4.5v15m7.5-7.5h-15')
+          |   Tambah Admin
+      // isi dari modal
+      input#add-user.modal-toggle(type='checkbox')
+      .modal.modal-bottom(class='sm:modal-middle')
+        .modal-box
+          h3.font-bold.text-lg Tambah Data 
+          form(action="/user/new" method="post")
+            .form-control.w-full.flex.flex-col.justify-center.items-center.px-8(class="")
+              .flex.justify-start.w-full(class="lg:justify-start lg:max-w-lg")
+                label.label
+                  span.label-text Nama
+              input.input.input-bordered.w-full.max-w-xs(name="name" required="" type='text', placeholder='Ketik Disini' class="lg:max-w-lg")
+              .flex.justify-start.w-full(class="lg:justify-start lg:max-w-lg")
+                label.label
+                  span.label-text Role
+              select.select.select-bordered.w-full.max-w-md(name="role" required="")
+                option(disabled='' selected='') Pilih role
+                each roleData in usersData
+                  option(value=roleData.data().role)= roleData.data().role==="superadmin"? "Super Admin" : "Admin"
+              .flex.flex-row.justify-center.items-center.gap-4
+                 button.btn.bg-pink-500.mt-6(class="border-none hover:bg-pink-900", type="submit") submit
+                 .modal-action
+                   label.btn.btn-error.text-white(class="hover:bg-[#9e4949]" for='add-user') Batal
+      .overflow-x-auto.mx-10.mt-8.border.rounded-t-lg(class="lg:mx-24")
+        table.table.table-normal.w-full
+          thead
+            tr
+              th
+              th Nama
+              th Role
+              th Aksi
+          tbody
+          - let i = 1
+          each data in usersData
+            tr
+              th=i++
+              td= data.data().name
+              td= data.data().role==="superadmin"? "Super Admin" : "Admin"
+              td
+                // The button to open modal
+                label.btn.btn-xs.btn-warning.mr-2.updateUser(for='update-user') edit
+                // Isi dari modal
+                input#update-user.modal-toggle(type='checkbox')
+                .modal.modal-bottom(class='sm:modal-middle')
+                  .modal-box
+                    h3.font-bold.text-lg Edit Data
+                    form(action="" method="" id="updateModalUser") 
+                      .form-control.w-full.flex.flex-col.justify-center.items-center.px-8(class="")
+                        .flex.justify-start.w-full(class="lg:justify-start lg:max-w-lg")
+                          label.label
+                            span.label-text Nama
+                        input.input.input-bordered.w-full.max-w-xs(name="name" id="name" type='text' class="lg:max-w-lg")
+                        .flex.justify-start.w-full(class="lg:justify-start lg:max-w-lg")
+                          label.label
+                            span.label-text Role
+                        select.select.select-bordered.w-full.max-w-md(name="role" id="role")
+                          option(disabled='' selected='') Pilih role
+                          each roleData in usersData
+                            option(value=roleData.data().role)= roleData.data().role==="superadmin"? "Super Admin" : "Admin"
+                        .flex.flex-row.justify-center.items-center.gap-4
+                          button.btn.bg-pink-500.mt-6(class="border-none hover:bg-pink-900", type="submit") submit
+                          .modal-action
+                            label.btn.btn-error.text-white(class="hover:bg-[#9e4949]" for='update-user') Batal
+                label.btn.btn-xs.btn-error(for='delete-user') delete
+                // Isi dari modal
+                input#delete-user.modal-toggle(type='checkbox')
+                .modal.modal-bottom(class='sm:modal-middle')
+                  .modal-box
+                    h3.font-bold.text-lg Apakah anda yakin ingin menghapus data ini?
+                    - let id = data.id
+                    form(action="/user/delete/"+id  method="") 
+                      input.hidden(value=data.id)
+                      .flex.flex-row.justify-center.items-center.gap-4
+                        button.btn.bg-pink-500.mt-6(class="border-none hover:bg-pink-900", type="submit") Iya
+                        .modal-action
+                          label.btn.btn-error.text-white(class="hover:bg-[#9e4949]" for='delete-user') Tidak
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+    script(src="/js/modalAdmin.js")
+             
+     
+
+      

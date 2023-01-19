@@ -1,0 +1,41 @@
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(href="/css/App.css" rel="stylesheet")
+    link(rel='preconnect' href='https://fonts.googleapis.com')
+    link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
+    link(href='https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins&display=swap' rel='stylesheet')
+  body
+    .font-pp(class="bg-[#FFECF1]")
+      .hero.min-h-screen
+        .hero-content.text-center
+          .max-w-md(class="md:max-w-2xl flex flex-col justify-center items-center")
+            img(src="https://i.ibb.co/sPs2K5y/Charco-Send-Email.png", alt="" class="w-80")
+            h1.text-3xl.font-bold.font-ds(class="lg:text-5xl") Anda Telah Melakukan Reservasi
+            blockquote.mb-3
+              | Anda telah berhasil melakukan reservasi pada tanggal 
+              span.relative.inline-block(class='before:block before:absolute before:-inset-1 before:rounded-md before:bg-pink-500')
+                span.relative.text-white= appointmentData.date
+              |   di klinik kesehatan Rumah Sayang Bunda
+            // The button to open modal
+            label.btn(class='bg-[#FFC9D7] btn-sm border-none text-black hover:bg-[#f391ab]' for='my-modal-6') Lihat Detail
+            label.mt-12 Jika ingin melakukan perubahan jadwal atau melakukan pembatalan reservasi klik nomor dibawah ini
+            a(class="link link-hover font-bold" href="https://api.whatsapp.com/send?phone=6281270330373") +6281270330373
+            // Put this part before </body> tag
+            input#my-modal-6.modal-toggle(type='checkbox')
+            .modal.modal-bottom(class='sm:modal-middle')
+              .modal-box
+                h3.font-bold.text-lg Reservasi Rumah Sayang Bunda
+                .flex.flex-col.w-full.text-start.px-3
+                  p.pt-4.pb-2= "Nama : " + appointmentData.name
+                  p.pb-2= "Email : " + appointmentData.email
+                  p.pb-2= "No. Hp : " + appointmentData.numWa
+                  p.pb-2= "Nama Instagram : " + (appointmentData.igAccount===""? "-" : appointmentData.igAccount)
+                  p.pb-2= "Tanggal Lahir : " + appointmentData.dateOfBirth
+                  p.pb-2= "Layanan : " + serviceData.data.name
+                  p.pb-2= "Waktu : " + appointmentData.time
+                .modal-action
+                  label.btn(for='my-modal-6' class="bg-[#FFC9D7] border-none text-black hover:bg-[#f391ab]") Yeay!
+      include footer.pug
+      

@@ -1,0 +1,64 @@
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+    link(href="/css/App.css" rel="stylesheet")
+    link(rel="preconnect" href="https://fonts.googleapis.com")
+    link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+    link(href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet")
+  body
+    .font-pp(class="bg-[#FFECF1]")
+      .carousel.w-full(class="lg:h-3/4")
+        #slide1.carousel-item.relative.w-full
+          img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src='https://i.postimg.cc/XqV5MJxv/carousel1.png')
+          .absolute.flex.justify-between.transform.left-5.right-5(class='-translate-y-1/2 top-1/2')
+            a.btn.btn-circle(href='#slide4') &#x276E;
+            a.btn.btn-circle(href='#slide2') &#x276F;
+        #slide2.carousel-item.relative.w-full
+          img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src='https://i.postimg.cc/5ts8VNBs/11.png')
+          .absolute.flex.justify-between.transform.left-5.right-5(class='-translate-y-1/2 top-1/2')
+            a.btn.btn-circle(href='#slide1') &#x276E;
+            a.btn.btn-circle(href='#slide3') &#x276F;
+        #slide3.carousel-item.relative.w-full
+          img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src='https://i.postimg.cc/Pxw1j9mC/12.png')
+          .absolute.flex.justify-between.transform.left-5.right-5(class='-translate-y-1/2 top-1/2')
+            a.btn.btn-circle(href='#slide2') &#x276E;
+            a.btn.btn-circle(href='#slide4') &#x276F;
+        #slide4.carousel-item.relative.w-full
+          img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src='https://i.postimg.cc/9fqDRTzS/13.png.onject-cover')
+          .absolute.flex.justify-between.transform.left-5.right-5(class='-translate-y-1/2 top-1/2')
+            a.btn.btn-circle(href='#slide3') &#x276E;
+            a.btn.btn-circle(href='#slide1') &#x276F;
+      //- .carousel.w-full(class="lg:h-3/4")
+      //-   #item1.carousel-item.w-full
+      //-     img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src='https://i.postimg.cc/XqV5MJxv/carousel1.png')
+      //-   |  
+      //-   #item2.carousel-item.w-full
+      //-     img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src="https://i.postimg.cc/5ts8VNBs/11.png")
+      //-   |  
+      //-   #item3.carousel-item.w-full
+      //-     img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src='https://i.postimg.cc/Pxw1j9mC/12.png')
+      //-   |
+      //-   #item4.carousel-item.w-full
+      //-     img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src='https://i.postimg.cc/9fqDRTzS/13.png')
+      //- |  
+      //- .flex.justify-center.w-full.py-2.gap-2
+      //-   a.btn.btn-xs(href='#item1' class="bg-[#FFC9D7] border-none text-black hover:bg-[#f391ab]") 1
+      //-   |  
+      //-   a.btn.btn-xs(href='#item2' class="bg-[#FFC9D7] border-none text-black hover:bg-[#f391ab]") 2
+      //-   |  
+      //-   a.btn.btn-xs(href='#item3' class="bg-[#FFC9D7] border-none text-black hover:bg-[#f391ab]") 3
+      //-   |
+      //-   a.btn.btn-xs(href='#item4' class="bg-[#FFC9D7] border-none text-black hover:bg-[#f391ab]") 4
+      .flex.flex-col.justify-center.items-center.text-black.py-4
+        h1.font-bold.font-ds.text-3xl(class="lg:text-7xl") Rumah Sayang Bunda
+        p.px-8.text-center.mt-4(class="lg:text-xl") Percayakan Kesahatan Bunda & Bayi Bersama Kami
+        p.px-8.text-center.mt-4(class="text-sm lg:text-md") Anda harus melakukan login terlebih dahulu untuk melakukan reservasi
+        div.flex.justify-center.mt-4
+          a(href=link)
+            button.btn.gap-2.btn-wide.flex.items-center(class="bg-[#FFC9D7] border-none text-black hover:bg-[#f391ab]")
+              svg(xmlns='http://www.w3.org/2000/svg' fill='none' viewbox='0 0 24 24' strokewidth='{1.5}' stroke='currentColor' class='w-6 h-6 mb-[0.2rem]')
+                path(class="w-4" strokelinecap='round' strokelinejoin='round' d='M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9')
+              | Login
+      include footer.pug

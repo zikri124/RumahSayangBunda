@@ -1,0 +1,79 @@
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(href="/css/App.css" rel="stylesheet")
+    link(rel='preconnect' href='https://fonts.googleapis.com')
+    link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
+    link(href='https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins&display=swap' rel='stylesheet')
+  body
+    .bg-white.min-h-screen.font-pp
+      include navbar.pug
+      h1.font-bold.text-2xl.text-center.mt-6.mb-4(class="lg:text-4xl lg:mb-0") Daftar Reservasi
+      .flex.flex-row.w-full.px-24.mb-4.hidden(class="lg:flex")
+        .flex.justify-start.items-end.w-full
+          .dropdown.dropdown-right
+            label.btn.m-1(tabindex='0' class="bg-pink-500 border-none hover:bg-pink-900") Filter Data
+            ul.dropdown-content.menu.p-2.shadow.bg-base-100.rounded-box.w-52(tabindex='0')
+              li
+                a(href="/admin/appointment") Semua Data
+              li
+                a(href="/admin/appointment/soon") Mendatang
+              li
+                a(href="/admin/appointment/past") Telah Lewat
+        .flex.flex-col.w-full.justify-end.items-end(class="") 
+          .flex.max-w-md.w-full.p-0(class="justify-center items-center lg:pl-12")
+            label.label
+              span.label-text Cari Data
+          input.input.input-bordered.max-w-xs(id="myInput" type="text", placeholder='Ketik Disini')
+      .flex.flex-col.w-full.px-10.mb-4(class="lg:hidden")
+        .flex.justify-start.items-end.w-full
+          .dropdown.dropdown-right
+            label.btn.m-1(tabindex='0' class="bg-pink-500 border-none hover:bg-pink-900") Filter Data
+            ul.dropdown-content.menu.p-2.shadow.bg-base-100.rounded-box.w-52(tabindex='0')
+              li
+                a(href="/admin/appointment") Semua Data
+              li
+                a(href="/admin/appointment/soon") Mendatang
+              li
+                a(href="/admin/appointment/past") Telah Lewat
+        .flex.flex-col.w-full.justify-start.items-start(class="") 
+          .flex.max-w-md.w-full.p-0(class="")
+            label.label
+              span.label-text Cari Data
+          input.input.input-bordered.max-w-xs(id="myInput2" type="text", placeholder='Ketik Disini')
+      .overflow-x-auto.mx-10.mt-8.mb-8.border.rounded-t-lg.overflow-y-auto(class="lg:mx-24")
+        table.table.table-compact.w-full(id="example")
+          thead
+            tr
+              th
+              th Nama
+              th Service Id
+              th Status
+              th Tanggal Reservasi
+              th Waktu
+              th Tanggal Lahir
+          tbody(id="myTable")
+            - let i = 1 
+            each data in appointmentsData
+              tr
+                th= i++
+                td= data.data.name
+                each dataServices in servicesData
+                  if data.data.serviceId===dataServices.id
+                    td= dataServices.data.name
+                    - break
+                if data.data.status===true
+                  td Selesai
+                else if data.data.status===false
+                  td Belum berjalan
+                else 
+                  td Dibatalkan
+                td= data.data.date
+                td= data.data.time
+                td= data.data.dateOfBirth
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js")
+    script(src="/js/filter.js")  
+     
+
+      

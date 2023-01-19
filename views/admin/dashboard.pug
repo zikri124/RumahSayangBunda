@@ -1,0 +1,50 @@
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(href="/css/App.css" rel="stylesheet")
+    link(rel='preconnect' href='https://fonts.googleapis.com')
+    link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
+    link(href='https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins&display=swap' rel='stylesheet')
+  body
+    .bg-white.min-h-screen.font-pp
+      include navbar.pug
+      h1.font-bold.text-2xl.text-center.my-10(class="underline underline-offset-4") Selamat Datang di Dashboard Admin Rumah Sayang Bunda
+      //Tabel Pasien yang Akan Melakukan Pemeriksaan
+      p.text-center.mt-8.font-bold.text-xl.mx-10(class="lg:mx-0") Daftar Pasien yang Akan Melakukan Pemeriksaan
+      .overflow-x-auto.mx-8.mt-8.overflow-y-auto.h-56(class="lg:mx-24")
+        table.table.table-compact.w-full
+          thead
+            tr
+              th
+              th Nama
+              th Layanan
+              th Status
+              th Tanggal Reservasi
+              th Waktu
+              th Tanggal Lahir
+          tbody
+          - let i = 1;
+          each dataAppointment in appointmentData
+            tr
+              th(scope="row")=i++
+              td= dataAppointment.data.name
+              each dataServices in servicesData
+                if dataAppointment.data.serviceId===dataServices.id
+                  td= dataServices.data.name
+                  - break
+              td= dataAppointment.data.status===true? "selesai" : "belum berjalan"
+              td= dataAppointment.data.date
+              td= dataAppointment.data.time
+              td= dataAppointment.data.dateOfBirth
+      .flex.flex-row.px-24.justify-between.my-8.hidden(class="md:flex")
+        .w-full
+          .rounded-lg.p-4(class="shadow-[0px_5px_20px_1px_rgba(0,0,0,0.3)]")
+            p.text-center.font-bold Grafik Pengunjung Setiap 1 Minggu
+            #chart 
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+    script(src="https://cdn.jsdelivr.net/npm/apexcharts")
+    script(src="/js/chart.js")
+    //- script(type='module' src='js/acquisitions.js')
+
+      
