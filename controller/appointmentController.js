@@ -207,32 +207,6 @@ module.exports = {
     });
   },
 
-  viewProcessAppointment: async (req, res) => {
-    const appointmentData = req.appointmentData;
-
-    const customersData = req.customersData;
-
-    const serviceData = req.servicesData;
-
-    const customerQuery2 = query(collection(db, "services"));
-
-    await getDocs(customerQuery2)
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          serviceData.push(doc.data());
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    return res.render("admin/formProcessReservasi", {
-      appointmentData: appointmentData,
-      customersdata: customersData,
-      serviceData: serviceData
-    });
-  },
-
   viewEditAppointment: async (req, res) => {
     const appointmentData = req.appointmentData;
     const servicesData = req.servicesData;
@@ -330,12 +304,17 @@ module.exports = {
     });
   },
 
-  getAnAppointmentAPI: async (req, res) => {
-    const appointmentData = req.appointmentData;
+  getAnAppointmentAPI: (req, res) => {
+    const appointmentsData = req.appointmentsData;
+    const appointmentId = req.params.appId;
 
-    return res.json({
-      success: true,
-      appointmentData: appointmentData
+    appointmentsData.forEach((appointmentData) => {
+      if (appointmentData.id == appointmentId) {
+        return res.json({
+          success: true,
+          appointmentData: appointmentData
+        });
+      }
     });
   },
 
@@ -353,10 +332,8 @@ module.exports = {
         });
       })
       .catch((error) => {
-        return res.status(500).json({
-          success: false,
-          error: error
-        });
+        console.log(error)
+        return res.status(500)
       });
   },
 
@@ -375,10 +352,8 @@ module.exports = {
         });
       })
       .catch((error) => {
-        return res.status(500).json({
-          success: false,
-          error: error
-        });
+        console.log(error)
+        return res.status(500)
       });
   }
 };

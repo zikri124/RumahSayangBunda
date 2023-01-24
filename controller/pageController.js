@@ -22,40 +22,40 @@ module.exports = {
   },
 
   viewAdminDashboard: async (req, res) => {
-    const appointmentData = [];
+    const appointmentData = req.appointmentsData;
 
     const servicesData = req.servicesData;
 
-    const dateClass = new Date();
-    let month = dateClass.getMonth() + 1;
-    if (month < 10) {
-      month = "0" + month;
-    }
-    let date = dateClass.getDate();
-    if (date < 10) {
-      date = "0" + date;
-    }
+    // const dateClass = new Date();
+    // let month = dateClass.getMonth() + 1;
+    // if (month < 10) {
+    //   month = "0" + month;
+    // }
+    // let date = dateClass.getDate();
+    // if (date < 10) {
+    //   date = "0" + date;
+    // }
 
-    const dateNow = dateClass.getFullYear() + "-" + month + "-" + date;
+    // const dateNow = dateClass.getFullYear() + "-" + month + "-" + date;
 
-    const appointmentQuery = query(
-      collection(db, "appointments"),
-      where("date", "==", dateNow)
-    );
+    // const appointmentQuery = query(
+    //   collection(db, "appointments"),
+    //   where("date", "==", dateNow)
+    // );
 
-    await getDocs(appointmentQuery)
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          const appointment = {
-            data: doc.data(),
-            id: doc.id
-          };
-          appointmentData.push(appointment);
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // await getDocs(appointmentQuery)
+    //   .then((querySnapshot) => {
+    //     querySnapshot.forEach((doc) => {
+    //       const appointment = {
+    //         data: doc.data(),
+    //         id: doc.id
+    //       };
+    //       appointmentData.push(appointment);
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
 
     // console.log({
     //   appointmentData: appointmentData,

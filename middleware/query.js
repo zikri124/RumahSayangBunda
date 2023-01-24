@@ -129,6 +129,44 @@ module.exports = {
       });
   },
 
+  getAppointmentsDataToday: async (req, res, next) => {
+    const appointmentsData = [];
+
+    const dateClass = new Date();
+    let month = dateClass.getMonth() + 1;
+    if (month < 10) {
+      month = "0" + month;
+    }
+    let date = dateClass.getDate();
+    if (date < 10) {
+      date = "0" + date;
+    }
+
+    const dateNow = dateClass.getFullYear() + "-" + month + "-" + date;
+
+    const appointmentQuery = query(
+      collection(db, "appointments"),
+      where("date", "==", dateNow)
+    );
+
+    await getDocs(appointmentQuery)
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          const appointment = {
+            data: doc.data(),
+            id: doc.id
+          };
+          appointmentsData.push(appointment);
+        });
+        req.appointmentsData = appointmentsData;
+        next();
+      })
+      .catch((error) => {
+        console.log(error);
+        return;
+      });
+  },
+
   getAppointmentsDataByDate: async (req, res, next) => {
     console.log(req.query);
     if (req.query.date == null || req.query.serviceId == null) {

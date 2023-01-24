@@ -7,7 +7,12 @@ const serviceController = require("../controller/serviceController");
 
 const queryDb = require("../middleware/query");
 
-router.get("/", queryDb.getServicesData, pageController.viewAdminDashboard);
+router.get(
+  "/",
+  queryDb.getServicesData,
+  queryDb.getAppointmentsDataToday,
+  pageController.viewAdminDashboard
+);
 
 //-------------------------------------------------------------
 // APPOINTMENT

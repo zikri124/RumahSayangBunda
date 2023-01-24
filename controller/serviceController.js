@@ -102,10 +102,8 @@ module.exports = {
         });
       })
       .catch((error) => {
-        return res.status(500).json({
-          success: false,
-          error: error
-        });
+        console.log(error)
+        return res.status(500)
       });
   },
 
@@ -127,10 +125,8 @@ module.exports = {
         });
       })
       .catch((error) => {
-        return res.status(500).json({
-          success: false,
-          error: error
-        });
+        console.log(error)
+        return res.status(500)
       });
   },
 

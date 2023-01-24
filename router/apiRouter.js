@@ -20,7 +20,7 @@ router.get(
 );
 
 router.get(
-  "/appointment/:timeCode",
+  "/appointment/filter/:timeCode",
   queryDb.getAppointmentsDataByTime,
   queryDb.getServicesData,
   appointmentController.getAppointmentsAPI
@@ -33,8 +33,14 @@ router.get(
 );
 
 router.get(
+  "/appointment/filter/today",
+  queryDb.getServicesData,
+  appointmentController.getAllDataAPI
+);
+
+router.get(
   "/appointment/:appId",
-  queryDb.getAnAppointmentData,
+  queryDb.getAppointmentsData,
   appointmentController.getAnAppointmentAPI
 );
 
@@ -58,7 +64,7 @@ router.get(
 router.get(
   "/service/:serviceId",
   queryDb.getAServiceData,
-  serviceController.getServicesAPI
+  serviceController.getAServiceAPI
 );
 
 router.post("/service/new", serviceController.createServiceAPI);
