@@ -30,10 +30,6 @@ module.exports = {
 
     const tokens = await gCalendar.getToken(code);
 
-    // const userData = await gCalendar.getUserDetail(tokens);
-
-    // console.log(userData.data.email);
-
     return res
       .cookie("google_token", jwt.sign(tokens, process.env.JWT_KEY))
       .redirect("/appointment/new/form1");

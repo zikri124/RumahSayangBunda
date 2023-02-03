@@ -1,9 +1,6 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const JWT_KEY = process.env.JWT_KEY;
-//const firebase = require("../firebase");
-//const db = firebase.firestore;
-//const { collection, query, getDocs } = require("firebase/firestore");
 
 module.exports = {
   checkAuth: async (req, res, next) => {
@@ -103,5 +100,3 @@ module.exports = {
     }
   }
 };
-
-//https://codesandbox.io/s/web-sandi-yang-berhasil-1-dblxn9?file=/views/admin/login.pug:390-394

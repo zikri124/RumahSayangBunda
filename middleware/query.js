@@ -5,11 +5,8 @@ const {
   query,
   where,
   getDocs,
-  addDoc,
   doc,
-  limit,
   getDoc,
-  updateDoc,
   orderBy
 } = require("firebase/firestore");
 
