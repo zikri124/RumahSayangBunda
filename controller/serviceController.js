@@ -2,16 +2,10 @@ const firebase = require("../firebase");
 const db = firebase.firestore;
 const {
   collection,
-  query,
-  where,
-  getDocs,
   doc,
-  limit,
-  getDoc,
   addDoc,
   updateDoc,
-  deleteDoc,
-  QuerySnapshot
+  deleteDoc
 } = require("firebase/firestore");
 
 module.exports = {
