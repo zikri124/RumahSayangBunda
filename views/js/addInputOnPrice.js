@@ -20,13 +20,9 @@ $(add_button).click(function (e) {
              </button>
              </div>
              <label class="label w-24"> Deskripsi </label>
-             <input name=${
-               "chargeDesc" + i
-             } type="text" placeholder="Ketik Disini" class="input input-bordered w-full max-w-xs"/>
+             <input name=${"chargeDesc" + i} type="text" placeholder="Ketik Disini" class="input input-bordered w-full max-w-xs"/>
              <label class="label"> Biaya </label>
-             <input name=${
-               "addCharge" + i
-             } type="text" placeholder="Ketik Disini" class="input input-bordered w-full max-w-xs amount"/>
+             <input name=${"addCharge" + i} type="text" placeholder="Ketik Disini" class="input input-bordered w-full max-w-xs amount"/>
              </div>
       </div>`
     );
@@ -48,7 +44,7 @@ $(done_button).click(function (e) {
   if (total_fields_done < 1) {
     $(doneWrapper).append(
       `<input value=${i} name="nCharge" type="text" placeholder="Ketik Disini" class="input hidden input-bordered w-full max-w-xs"/>`,
-      `<button class="btn btn-md max-w-md btn-wide mt-4 bg-pink-500 border-none hover:bg-pink-900"  type="submit">Submit<button/>`
+      `<button class="btn btn-md max-w-md btn-wide mt-4 bg-pink-500 border-none hover:bg-pink-900"  type="submit"><a href=uri>Submit</a></button>`
     );
     check = false;
   }
