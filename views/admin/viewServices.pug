@@ -3,6 +3,8 @@ html
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     link(href="/css/App.css" rel="stylesheet")
+    title Rumah Sayang Bunda - Daftar Layanan
+    link(href="https://i.ibb.co/FbgNc2d/icon-RSB.jpg" rel="shortcut icon" type="image/png")
     link(rel='preconnect' href='https://fonts.googleapis.com')
     link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
     link(href='https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins&display=swap' rel='stylesheet')
@@ -44,68 +46,68 @@ html
                  .modal-action
                    label.btn.btn-error.text-white(class="hover:bg-[#9e4949]" for='add-service') Batal
       .overflow-x-auto.mx-10.mt-8.border.rounded-t-lg(class="lg:mx-24")
-        table.table.table-normal.w-full
+        table.table.table-normal.w-full.sortable
           thead
             tr
               th
-              th Nama
-              th Harga
-              th Ruangan
-              th Deskripsi
-              th Aksi
+              th(scope="col") Nama
+              th(scope="col") Harga
+              th(scope="col") Ruangan
+              th(scope="col") Deskripsi
+              th(scope="col") Aksi
           tbody
-          - let i = 1 
-          each data in servicesData
-            tr
-              th=i++
-              td= data.data.name
-              td= data.data.price
-              td= data.data.room
-              td= data.data.description
-              td
-                // The button to open modal
-                label.btn.btn-xs.btn-warning.mr-2.updateService(for=data.id) edit
-                // Isi dari modal
-                input.modal-toggle(type='checkbox' id=data.id)
-                .modal.modal-bottom(class='sm:modal-middle')
-                  .modal-box
-                    h3.font-bold.text-lg Edit Data
-                    form(action="/admin/service/edit/"+data.id method="post" id="modalModalService") 
-                      .form-control.w-full.flex.flex-col.justify-center.items-center.px-8(class="")
-                        .flex.justify-start.w-full(class="lg:justify-start lg:max-w-lg")
-                          label.label
-                            span.label-text Nama
-                        input.input.input-bordered.w-full.max-w-xs(name="name" id="name" value=data.data.name type='text', placeholder='Ketik Disini' class="lg:max-w-lg")
-                        .flex.justify-start.w-full(class="lg:justify-start lg:max-w-lg")
-                          label.label
-                            span.label-text Harga
-                        input.input.input-bordered.w-full.max-w-xs(name="price" id="price" value=data.data.price type='text', placeholder='Ketik Disini' class="lg:max-w-lg")
-                        .flex.justify-start.w-full(class="lg:justify-start lg:max-w-lg")
-                          label.label
-                            span.label-text Ruangan
-                        input.input.input-bordered.w-full.max-w-xs(name="room" id="room" value=data.data.room type='text', placeholder='Ketik Disini' class="lg:max-w-lg")
-                        .flex.justify-start.w-full(class="lg:justify-start lg:max-w-lg")
-                          label.label
-                            span.label-text Deskripsi
-                        input.input.input-bordered.w-full.max-w-xs(name="description" id="description" value=data.data.description type='text', placeholder='Ketik Disini' class="lg:max-w-lg")
+            - let i = 1 
+            each data in servicesData
+              tr
+                th=i++
+                td= data.data.name
+                td= data.data.price
+                td= data.data.room
+                td= data.data.description
+                td
+                  // The button to open modal
+                  label.btn.btn-xs.btn-warning.mr-2.updateService(for=data.id) edit
+                  // Isi dari modal
+                  input.modal-toggle(type='checkbox' id=data.id)
+                  .modal.modal-bottom(class='sm:modal-middle')
+                    .modal-box
+                      h3.font-bold.text-lg Edit Data
+                      form(action="/admin/service/edit/"+data.id method="post" id="modalModalService") 
+                        .form-control.w-full.flex.flex-col.justify-center.items-center.px-8(class="")
+                          .flex.justify-start.w-full(class="lg:justify-start lg:max-w-lg")
+                            label.label
+                              span.label-text Nama
+                          input.input.input-bordered.w-full.max-w-xs(name="name" id="name" value=data.data.name type='text', placeholder='Ketik Disini' class="lg:max-w-lg")
+                          .flex.justify-start.w-full(class="lg:justify-start lg:max-w-lg")
+                            label.label
+                              span.label-text Harga
+                          input.input.input-bordered.w-full.max-w-xs(name="price" id="price" value=data.data.price type='text', placeholder='Ketik Disini' class="lg:max-w-lg")
+                          .flex.justify-start.w-full(class="lg:justify-start lg:max-w-lg")
+                            label.label
+                              span.label-text Ruangan
+                          input.input.input-bordered.w-full.max-w-xs(name="room" id="room" value=data.data.room type='text', placeholder='Ketik Disini' class="lg:max-w-lg")
+                          .flex.justify-start.w-full(class="lg:justify-start lg:max-w-lg")
+                            label.label
+                              span.label-text Deskripsi
+                          input.input.input-bordered.w-full.max-w-xs(name="description" id="description" value=data.data.description type='text', placeholder='Ketik Disini' class="lg:max-w-lg")
+                          .flex.flex-row.justify-center.items-center.gap-4
+                            button.btn.bg-pink-500.mt-6(class="border-none hover:bg-pink-900", type="submit") submit
+                            .modal-action
+                              label.btn.btn-error.text-white(class="hover:bg-[#9e4949]" for=data.id) Batal
+                  label.btn.btn-xs.btn-error(for=data.id+"delete") delete
+                  // Isi dari modal
+                  input.modal-toggle(type='checkbox' id=data.id+"delete")
+                  .modal.modal-bottom(class='sm:modal-middle')
+                    .modal-box
+                      h3.font-bold.text-lg Apakah anda yakin ingin menghapus data ini?
+                      form(action="/admin/service/delete/"+data.id  method="post") 
                         .flex.flex-row.justify-center.items-center.gap-4
-                          button.btn.bg-pink-500.mt-6(class="border-none hover:bg-pink-900", type="submit") submit
+                          button.btn.bg-pink-500.mt-6(class="border-none hover:bg-pink-900", type="submit") Iya
                           .modal-action
-                            label.btn.btn-error.text-white(class="hover:bg-[#9e4949]" for=data.id) Batal
-                label.btn.btn-xs.btn-error(for=data.id+"delete") delete
-                // Isi dari modal
-                input.modal-toggle(type='checkbox' id=data.id+"delete")
-                .modal.modal-bottom(class='sm:modal-middle')
-                  .modal-box
-                    h3.font-bold.text-lg Apakah anda yakin ingin menghapus data ini?
-                    form(action="/admin/service/delete/"+data.id  method="post") 
-                      .flex.flex-row.justify-center.items-center.gap-4
-                        button.btn.bg-pink-500.mt-6(class="border-none hover:bg-pink-900", type="submit") Iya
-                        .modal-action
-                          label.btn.btn-error.text-white(class="hover:bg-[#9e4949]" for=data.id+"delete") Tidak
+                            label.btn.btn-error.text-white(class="hover:bg-[#9e4949]" for=data.id+"delete") Tidak
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
     script(src="/js/modalService.js")
-
+    script(src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js")
      
 
       

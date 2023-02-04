@@ -3,6 +3,8 @@ html
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     link(href="/css/App.css" rel="stylesheet")
+    title Rumah Sayang Bunda - Dashboard
+    link(href="https://i.ibb.co/FbgNc2d/icon-RSB.jpg" rel="shortcut icon" type="image/png")
     link(rel='preconnect' href='https://fonts.googleapis.com')
     link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
     link(href='https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins&display=swap' rel='stylesheet')
@@ -13,30 +15,71 @@ html
       //Tabel Pasien yang Akan Melakukan Pemeriksaan
       p.text-center.mt-8.font-bold.text-xl.mx-10(class="lg:mx-0") Daftar Pasien yang Akan Melakukan Pemeriksaan
       .overflow-x-auto.mx-8.mt-8.overflow-y-auto.h-56(class="lg:mx-24")
-        table.table.table-compact.w-full
+        table.table.table-compact.w-full.sortable
           thead
             tr
               th
-              th Nama
-              th Layanan
-              th Status
-              th Tanggal Reservasi
-              th Waktu
-              th Tanggal Lahir
+              th(scope="col") Nama
+              th(scope="col") Layanan
+              th(scope="col") Status
+              th(scope="col") Tanggal Reservasi
+              th(scope="col") Waktu
+              th(scope="col") Tanggal Lahir
           tbody
-          - let i = 1;
-          each dataAppointment in appointmentData
+            - let i = 1
+            each dataAppointment in appointmentData
+              tr
+                th(scope="row")=i++
+                td= dataAppointment.data.name
+                each dataServices in servicesData
+                  if dataAppointment.data.serviceId===dataServices.id
+                    td= dataServices.data.name
+                    - break
+                td= dataAppointment.data.status===true? "selesai" : "belum berjalan"
+                td= dataAppointment.data.date
+                td= dataAppointment.data.time
+                td= dataAppointment.data.dateOfBirth
+      .overflow-x-auto.mx-8.mt-8.overflow-y-auto.h-56.hidden(class="lg:mx-24")
+        table.table.table-compact.w-full.sortable
+          thead
             tr
-              th(scope="row")=i++
-              td= dataAppointment.data.name
-              each dataServices in servicesData
-                if dataAppointment.data.serviceId===dataServices.id
-                  td= dataServices.data.name
-                  - break
-              td= dataAppointment.data.status===true? "selesai" : "belum berjalan"
-              td= dataAppointment.data.date
-              td= dataAppointment.data.time
-              td= dataAppointment.data.dateOfBirth
-    //- script(type='module' src='js/acquisitions.js')
+              th
+              th(scope="col") Total Kunjungan
+              th(scope="col") Tanggal Reservasi
+          tbody
+            - let index = 1
+            - let hariIni = new Date()
+            - hariIni.setDate(hariIni.getDate() - 7)
+            - for(let j=0; j < 7 ; j++)
+              - hariIni.setDate(hariIni.getDate() + 1)
+              - let month = hariIni.getMonth() + 1;
+              - if (month < 10) 
+                - month = "0" + month;
+              - let date = hariIni.getDate();
+              - if (date < 10) 
+                - date = "0" + date;
+              - const dateString2 = hariIni.getFullYear() + "-" + month + "-" + date;
+              - let isFill = false
+              each data in queryData
+                - if(dateString2 === data.date)
+                  tr
+                    th(scope="row")=index++
+                    td(name=`totalAppoinment${index}` value=data.totalAppoinment)= data.totalAppointment
+                    td(name=`date${index}` value=data.date)= data.date
+                    - isFill = true
+                    - break
+              if(isFill === false)
+                tr 
+                  td=index++
+                  td(name=`totalAppoinment${index}` value="0")= 0 
+                  td(name=`date${index}` value=dateString2)= dateString2
+      .px-24.hidden.my-8.flex.justify-center(class="md:flex")
+        .rounded-lg.p-4(class="w-9/12 shadow-[0px_5px_20px_1px_rgba(0,0,0,0.3)]")
+          p.text-center.font-bold Grafik user yang melakukan reservasi Setiap 1 Minggu
+           #chart  
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+    script(src="https://cdn.jsdelivr.net/npm/apexcharts")
+    script(src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js")
+    script(src="/js/chart.js")
 
       
