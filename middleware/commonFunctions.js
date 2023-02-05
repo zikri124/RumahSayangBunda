@@ -28,6 +28,27 @@ module.exports = {
     return service;
   },
 
+  getCurrentDate: () => {
+    const dateClass = new Date();
+    let month = dateClass.getMonth() + 1;
+    if (month < 10) {
+      month = "0" + month;
+    }
+    let date = dateClass.getDate();
+    if (date < 10) {
+      date = "0" + date;
+    }
+
+    const dateNow = dateClass.getFullYear() + "-" + month + "-" + date;
+
+    return {
+      string: dateNow,
+      year: dateClass.getFullYear(),
+      month: month,
+      date: date
+    }
+  },
+
   getAge: (customerDOB) => {
     const date = new Date();
     const dateToCalculate = new Date(customerDOB);

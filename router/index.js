@@ -8,10 +8,6 @@ const authRouter = require("./authRouter");
 const adminRouter = require("./adminRouter");
 const apiRouter = require("./apiRouter");
 
-router.get("/ping", (req, res) => {
-  res.send("Web Online");
-});
-
 router.use("/", authRouter);
 
 router.use("/", clientRouter);

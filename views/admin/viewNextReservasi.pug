@@ -3,6 +3,8 @@ html
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     link(href="/css/App.css" rel="stylesheet")
+    title Rumah Sayang Bunda - Daftar Reservasi
+    link(href="https://i.ibb.co/FbgNc2d/icon-RSB.jpg" rel="shortcut icon" type="image/png")
     link(rel='preconnect' href='https://fonts.googleapis.com')
     link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
     link(href='https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins&display=swap' rel='stylesheet')
@@ -43,16 +45,16 @@ html
               span.label-text Cari Data
           input.input.input-bordered.max-w-xs(id="myInput2" type="text", placeholder='Ketik Disini')
       .overflow-x-auto.mx-10.mt-8.mb-8.border.rounded-t-lg.overflow-y-auto(class="lg:mx-24")
-        table.table.table-compact.w-full(id="example")
+        table.table.table-compact.w-full.sortable
           thead
             tr
               th
-              th Nama
-              th Service Id
-              th Status
-              th Tanggal Reservasi
-              th Waktu
-              th Tanggal Lahir
+              th(scope="col") Nama
+              th(scope="col") Service Id
+              th(scope="col") Status
+              th(scope="col") Tanggal Reservasi
+              th(scope="col") Waktu
+              th(scope="col") Tanggal Lahir
           tbody(id="myTable")
             - let i = 1 
             each data in appointmentsData
@@ -74,6 +76,6 @@ html
                 td= data.data.dateOfBirth
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js")
     script(src="/js/filter.js")  
-     
+    script(src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js")
 
       
