@@ -6,61 +6,119 @@ html
     link(href="/css/App.css" rel="stylesheet")
     link(rel="preconnect" href="https://fonts.googleapis.com")
     link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+    script(src="https://kit.fontawesome.com/8e8eb5d7ee.js" crossorigin="anonymous")
     title Rumah Sayang Bunda - Login
     link(href="https://i.ibb.co/FbgNc2d/icon-RSB.jpg" rel="shortcut icon" type="image/jpg")
     link(href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet")
   body
-    .font-pp(class="bg-[#FFECF1]")
-      .carousel.w-full(class="lg:h-3/4")
-        #slide1.carousel-item.relative.w-full
-          img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src='https://i.postimg.cc/XqV5MJxv/carousel1.png')
-          .absolute.flex.justify-between.transform.left-5.right-5(class='-translate-y-1/2 top-1/2')
-            a.btn.btn-circle(href='#slide4') &#x276E;
-            a.btn.btn-circle(href='#slide2') &#x276F;
-        #slide2.carousel-item.relative.w-full
-          img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src='https://i.postimg.cc/5ts8VNBs/11.png')
-          .absolute.flex.justify-between.transform.left-5.right-5(class='-translate-y-1/2 top-1/2')
-            a.btn.btn-circle(href='#slide1') &#x276E;
-            a.btn.btn-circle(href='#slide3') &#x276F;
-        #slide3.carousel-item.relative.w-full
-          img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src='https://i.postimg.cc/Pxw1j9mC/12.png')
-          .absolute.flex.justify-between.transform.left-5.right-5(class='-translate-y-1/2 top-1/2')
-            a.btn.btn-circle(href='#slide2') &#x276E;
-            a.btn.btn-circle(href='#slide4') &#x276F;
-        #slide4.carousel-item.relative.w-full
-          img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src='https://i.postimg.cc/9fqDRTzS/13.png.onject-cover')
-          .absolute.flex.justify-between.transform.left-5.right-5(class='-translate-y-1/2 top-1/2')
-            a.btn.btn-circle(href='#slide3') &#x276E;
-            a.btn.btn-circle(href='#slide1') &#x276F;
-      //- .carousel.w-full(class="lg:h-3/4")
-      //-   #item1.carousel-item.w-full
-      //-     img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src='https://i.postimg.cc/XqV5MJxv/carousel1.png')
-      //-   |  
-      //-   #item2.carousel-item.w-full
-      //-     img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src="https://i.postimg.cc/5ts8VNBs/11.png")
-      //-   |  
-      //-   #item3.carousel-item.w-full
-      //-     img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src='https://i.postimg.cc/Pxw1j9mC/12.png')
-      //-   |
-      //-   #item4.carousel-item.w-full
-      //-     img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src='https://i.postimg.cc/9fqDRTzS/13.png')
-      //- |  
-      //- .flex.justify-center.w-full.py-2.gap-2
-      //-   a.btn.btn-xs(href='#item1' class="bg-[#FFC9D7] border-none text-black hover:bg-[#f391ab]") 1
-      //-   |  
-      //-   a.btn.btn-xs(href='#item2' class="bg-[#FFC9D7] border-none text-black hover:bg-[#f391ab]") 2
-      //-   |  
-      //-   a.btn.btn-xs(href='#item3' class="bg-[#FFC9D7] border-none text-black hover:bg-[#f391ab]") 3
-      //-   |
-      //-   a.btn.btn-xs(href='#item4' class="bg-[#FFC9D7] border-none text-black hover:bg-[#f391ab]") 4
-      .flex.flex-col.justify-center.items-center.text-black.py-4
-        h1.font-bold.font-ds.text-3xl(class="lg:text-7xl") Rumah Sayang Bunda
-        p.px-8.text-center.mt-4(class="lg:text-xl") Percayakan Kesahatan Bunda & Bayi Bersama Kami
-        p.px-8.text-center.mt-4(class="text-sm lg:text-md") Anda harus melakukan login terlebih dahulu untuk melakukan reservasi
-        div.flex.justify-center.mt-4
+    .font-pp(class="bg-white")
+      include navbar.pug
+      .flex.flex-col.px-8(class="lg:px-24")
+        .div(id="home" class="min-h-[40rem] flex flex-col justify-center")
+          h1.text-2xl.leading-normal.font-bold(class="lg:text-6xl") Kami membantu anda 
+            .br dalam melakukan 
+              span(class="text-[#f391ab]") reservasi
+          h5.mt-8.text-sm Memudahkan pelanggan untuk melakukan reservasi pada klinik Rumah Sayang Bunda. 
+            .br Anda harus login terlebih dahulu untuk melakukan reservasi
+          div.flex.justify-center.mt-8
           a(href=link)
-            button.btn.gap-2.btn-wide.flex.items-center(class="bg-[#FFC9D7] border-none text-black hover:bg-[#f391ab]")
+            button.btn.gap-2.flex(class="bg-[#FFC9D7] border-none text-black hover:bg-[#f391ab]")
               svg(xmlns='http://www.w3.org/2000/svg' fill='none' viewbox='0 0 24 24' strokewidth='{1.5}' stroke='currentColor' class='w-6 h-6 mb-[0.2rem]')
                 path(class="w-4" strokelinecap='round' strokelinejoin='round' d='M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9')
-              | Login
+              | Login untuk memulai reservasi
+        div(class="min-h-screen flex flex-col justify-center" id="about-us")
+          .flex.flex-col(class="lg:flex-row lg:justify-between lg:gap-3 gap-7")
+            div
+              h1.text-2xl.font-bold.mb-4.text-center(class="lg:text-6xl lg:text-start") About Us
+              h5(class="lg:text-lg lg:flex hidden lg:flex-col") Rumah sayang bunda bergerak di bidang jasa perawatan moms and baby. 
+                .br Seiring dengan perkembangan jaman, kami fokus dalam perawatan moms and baby seperti 
+                .br massage yang di kemas dengan gaya modern, yang mana kami dalam pelayanannya 
+                .br memberikan pelayanan lewat terapis - terapis yang berlatar pendidikan kesehatan yaitu bidan, 
+                .br serta minyak yang kami gunakan merupakan oil esential dari young living.
+              h5.text-sm(class="md:hidden text-center") Rumah sayang bunda bergerak di bidang jasa perawatan moms and baby. Seiring dengan perkembangan jaman, kami fokus dalam perawatan moms and baby seperti massage yang di kemas dengan gaya modern, yang mana kami dalam pelayanan memberikan pelayanan lewat terapis - terapis yang berlatar pendidikan kesehatan yaitu bidan, serta minyak yang kami gunakan merupak oil esential dari young living.
+            div(class="ease-in duration-300 transition")
+              img(src="/img/pegawai-rsb.jpeg", alt="pegawai-rsb" class="w-96 rounded-lg shadow-[0px_5px_20px_1px_rgba(0,0,0,0.3)] cursor-pointer transition ease-in-out delay-15 hover:-translate-y-1 hover:scale-110 duration-300")
+        div(id="services" class="min-h-screen flex flex-col justify-center pt-10 lg:pt-28")
+          h1.text-2xl.font-bold.mb-4.text-center(class="lg:text-6xl") Services 
+          h5.text-sm.text-center(class="lg:text-lg") Inilah beberapa layanan yang terdapat pada Klinik Rumah Sayang Bunda
+          .flex.flex-row.flex-wrap.mt-10.gap-10.justify-center.z-30
+            .card.card-compact.w-96.bg-base-100.shadow-xl(class="cursor-pointer transition ease-in-out delay-15 hover:-translate-y-1 hover:scale-110 duration-300")
+              figure
+                img(src='/img/kids-babySpa.jpeg' alt='kids-babySpa')
+              .card-body
+                h2.card-title Baby Spa
+                p If a dog chews shoes whose shoes does he choose?
+            .card.card-compact.w-96.bg-base-100.shadow-xl(class="cursor-pointer transition ease-in-out delay-15 hover:-translate-y-1 hover:scale-110 duration-300")
+              figure
+                img(src='/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg' alt='Shoes')
+              .card-body
+                h2.card-title Baby Haircut and Nailscut
+                p If a dog chews shoes whose shoes does he choose?
+            .card.card-compact.w-96.bg-base-100.shadow-xl(class="cursor-pointer transition ease-in-out delay-15 hover:-translate-y-1 hover:scale-110 duration-300")
+              figure
+                img(src='/img/baby-massage.jpeg' alt='Baby Massage')
+              .card-body
+                h2.card-title Baby Massage
+                p If a dog chews shoes whose shoes does he choose?
+            .card.card-compact.w-96.bg-base-100.shadow-xl(class="cursor-pointer transition ease-in-out delay-15 hover:-translate-y-1 hover:scale-110 duration-300")
+              figure
+                img(src='/img/kids-massage.jpeg' alt='Shoes')
+              .card-body
+                h2.card-title Kids Massage
+                p If a dog chews shoes whose shoes does he choose?
+            .card.card-compact.w-96.bg-base-100.shadow-xl(class="cursor-pointer transition ease-in-out delay-15 hover:-translate-y-1 hover:scale-110 duration-300")
+              figure
+                img(src='/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg' alt='Shoes')
+              .card-body
+                h2.card-title New Born Premium Care
+                p If a dog chews shoes whose shoes does he choose?
+            .card.card-compact.w-96.bg-base-100.shadow-xl(class="cursor-pointer transition ease-in-out delay-15 hover:-translate-y-1 hover:scale-110 duration-300")
+              figure
+                img(src='/img/massage-bapil.jpeg' alt='Shoes')
+              .card-body
+                h2.card-title Baby Massage Bapil
+                p If a dog chews shoes whose shoes does he choose?
+            .card.card-compact.w-96.bg-base-100.shadow-xl(class="cursor-pointer transition ease-in-out delay-15 hover:-translate-y-1 hover:scale-110 duration-300")
+              figure
+                img(src='/img/kids-spa.jpeg' alt='Shoes')
+              .card-body
+                h2.card-title Kids Spa
+                p If a dog chews shoes whose shoes does he choose?
+            .card.card-compact.w-96.bg-base-100.shadow-xl(class="cursor-pointer transition ease-in-out delay-15 hover:-translate-y-1 hover:scale-110 duration-300")
+              figure
+                img(src='/img/treatment-mom.jpeg' alt='Shoes')
+              .card-body
+                h2.card-title Treatment Mom
+                p If a dog chews shoes whose shoes does he choose?
+      //- .carousel.w-full(class="lg:h-3/4")
+      //-   #slide1.carousel-item.relative.w-full
+      //-     img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src='https://i.postimg.cc/XqV5MJxv/carousel1.png')
+      //-     .absolute.flex.justify-between.transform.left-5.right-5(class='-translate-y-1/2 top-1/2')
+      //-       a.btn.btn-circle(href='#slide4') &#x276E;
+      //-       a.btn.btn-circle(href='#slide2') &#x276F;
+      //-   #slide2.carousel-item.relative.w-full
+      //-     img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src='https://i.postimg.cc/5ts8VNBs/11.png')
+      //-     .absolute.flex.justify-between.transform.left-5.right-5(class='-translate-y-1/2 top-1/2')
+      //-       a.btn.btn-circle(href='#slide1') &#x276E;
+      //-       a.btn.btn-circle(href='#slide3') &#x276F;
+      //-   #slide3.carousel-item.relative.w-full
+      //-     img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src='https://i.postimg.cc/Pxw1j9mC/12.png')
+      //-     .absolute.flex.justify-between.transform.left-5.right-5(class='-translate-y-1/2 top-1/2')
+      //-       a.btn.btn-circle(href='#slide2') &#x276E;
+      //-       a.btn.btn-circle(href='#slide4') &#x276F;
+      //-   #slide4.carousel-item.relative.w-full
+      //-     img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src='https://i.postimg.cc/9fqDRTzS/13.png.onject-cover')
+      //-     .absolute.flex.justify-between.transform.left-5.right-5(class='-translate-y-1/2 top-1/2')
+      //-       a.btn.btn-circle(href='#slide3') &#x276E;
+      //-       a.btn.btn-circle(href='#slide1') &#x276F;
+      //- .flex.flex-col.justify-center.items-center.text-black.py-4
+      //-   h1.font-bold.font-ds.text-3xl(class="lg:text-7xl") Rumah Sayang Bunda
+      //-   p.px-8.text-center.mt-4(class="lg:text-xl") Percayakan Kesahatan Bunda & Bayi Bersama Kami
+      //-   p.px-8.text-center.mt-4(class="text-sm lg:text-md") Anda harus melakukan login terlebih dahulu untuk melakukan reservasi
+      //-   div.flex.justify-center.mt-4
+      //-     a(href=link)
+      //-       button.btn.gap-2.btn-wide.flex.items-center(class="bg-[#FFC9D7] border-none text-black hover:bg-[#f391ab]")
+      //-         svg(xmlns='http://www.w3.org/2000/svg' fill='none' viewbox='0 0 24 24' strokewidth='{1.5}' stroke='currentColor' class='w-6 h-6 mb-[0.2rem]')
+      //-           path(class="w-4" strokelinecap='round' strokelinejoin='round' d='M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9')
+      //-         | Login
       include footer.pug
