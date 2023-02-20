@@ -4184,6 +4184,10 @@ html {
   margin-bottom: 0.2rem;
 }
 
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -4226,10 +4230,6 @@ html {
 
 .mb-64 {
   margin-bottom: 16rem;
-}
-
-.mt-10 {
-  margin-top: 2.5rem;
 }
 
 .mt-24 {
@@ -4537,6 +4537,10 @@ html {
   gap: 0.75rem;
 }
 
+.gap-7 {
+  gap: 1.75rem;
+}
+
 .gap-10 {
   gap: 2.5rem;
 }
@@ -4547,10 +4551,6 @@ html {
 
 .gap-6 {
   gap: 1.5rem;
-}
-
-.gap-7 {
-  gap: 1.75rem;
 }
 
 .place-self-center {
@@ -4711,11 +4711,6 @@ html {
   padding-right: 2.5rem;
 }
 
-.py-2 {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -4739,6 +4734,11 @@ html {
 .px-0 {
   padding-left: 0px;
   padding-right: 0px;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .py-10 {
@@ -4773,12 +4773,8 @@ html {
   padding-top: 2rem;
 }
 
-.pt-36 {
-  padding-top: 9rem;
-}
-
-.pt-40 {
-  padding-top: 10rem;
+.pt-10 {
+  padding-top: 2.5rem;
 }
 
 .pt-4 {
@@ -4787,6 +4783,14 @@ html {
 
 .pb-2 {
   padding-bottom: 0.5rem;
+}
+
+.pt-36 {
+  padding-top: 9rem;
+}
+
+.pt-40 {
+  padding-top: 10rem;
 }
 
 .pl-12 {
@@ -4799,10 +4803,6 @@ html {
 
 .pt-24 {
   padding-top: 6rem;
-}
-
-.pt-10 {
-  padding-top: 2.5rem;
 }
 
 .pt-32 {
@@ -4863,14 +4863,14 @@ html {
   line-height: 1rem;
 }
 
-.text-6xl {
-  font-size: 3.75rem;
-  line-height: 1;
-}
-
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
+}
+
+.text-6xl {
+  font-size: 3.75rem;
+  line-height: 1;
 }
 
 .text-4xl {
@@ -5109,9 +5109,20 @@ html {
   background-color: rgb(243 145 171 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-white:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.hover\:shadow-\[0px_5px_20px_1px_\#f391ab\]:hover {
+  --tw-shadow: 0px 5px 20px 1px #f391ab;
+  --tw-shadow-colored: 0px 5px 20px 1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .table .hover\:hover:hovertr:hover th,
@@ -5164,17 +5175,14 @@ html {
     justify-content: center;
   }
 
-  .md\:place-self-center {
-    place-self: center;
-  }
-
-  .md\:justify-self-end {
-    justify-self: end;
-  }
-
   .md\:px-24 {
     padding-left: 6rem;
     padding-right: 6rem;
+  }
+
+  .md\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 }
 
@@ -5203,10 +5211,6 @@ html {
 
   .lg\:hidden {
     display: none;
-  }
-
-  .lg\:h-4\/6 {
-    height: 66.666667%;
   }
 
   .lg\:h-3\/4 {
@@ -5247,11 +5251,6 @@ html {
 
   .lg\:gap-3 {
     gap: 0.75rem;
-  }
-
-  .lg\:gap-x-\[36rem\] {
-    -moz-column-gap: 36rem;
-         column-gap: 36rem;
   }
 
   .lg\:px-12 {
@@ -5306,11 +5305,6 @@ html {
     line-height: 1.75rem;
   }
 
-  .lg\:text-5xl {
-    font-size: 3rem;
-    line-height: 1;
-  }
-
   .lg\:text-6xl {
     font-size: 3.75rem;
     line-height: 1;
@@ -5319,5 +5313,10 @@ html {
   .lg\:text-lg {
     font-size: 1.125rem;
     line-height: 1.75rem;
+  }
+
+  .lg\:text-5xl {
+    font-size: 3rem;
+    line-height: 1;
   }
 }
