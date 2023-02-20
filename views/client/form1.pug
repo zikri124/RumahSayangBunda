@@ -11,27 +11,27 @@ html
     link(href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet")
   body
     .font-pp(class="bg-[#FFECF1]")
-      .carousel.w-full(class="lg:h-4/6")
-        #item1.carousel-item.w-full
+      .carousel.w-full(class="lg:h-3/4")
+        #slide1.carousel-item.relative.w-full
           img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src='https://i.postimg.cc/XqV5MJxv/carousel1.png')
-        |  
-        #item2.carousel-item.w-full
-          img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src="https://i.postimg.cc/5ts8VNBs/11.png")
-        |  
-        #item3.carousel-item.w-full
+          .absolute.flex.justify-between.transform.left-5.right-5(class='-translate-y-1/2 top-1/2')
+            a.btn.btn-circle(href='#slide4') &#x276E;
+            a.btn.btn-circle(href='#slide2') &#x276F;
+        #slide2.carousel-item.relative.w-full
+          img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src='https://i.postimg.cc/5ts8VNBs/11.png')
+          .absolute.flex.justify-between.transform.left-5.right-5(class='-translate-y-1/2 top-1/2')
+            a.btn.btn-circle(href='#slide1') &#x276E;
+            a.btn.btn-circle(href='#slide3') &#x276F;
+        #slide3.carousel-item.relative.w-full
           img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src='https://i.postimg.cc/Pxw1j9mC/12.png')
-        |
-        #item4.carousel-item.w-full
-          img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src='https://i.postimg.cc/Pxw1j9mC/12.png')
-      |  
-      .flex.justify-center.w-full.py-2.gap-2
-        a.btn.btn-xs(href='#item1' class="bg-[#FFC9D7] border-none text-black hover:bg-[#f391ab]") 1
-        |  
-        a.btn.btn-xs(href='#item2' class="bg-[#FFC9D7] border-none text-black hover:bg-[#f391ab]") 2
-        |  
-        a.btn.btn-xs(href='#item3' class="bg-[#FFC9D7] border-none text-black hover:bg-[#f391ab]") 3
-        |
-        a.btn.btn-xs(href='#item4' class="bg-[#FFC9D7] border-none text-black hover:bg-[#f391ab]") 4
+          .absolute.flex.justify-between.transform.left-5.right-5(class='-translate-y-1/2 top-1/2')
+            a.btn.btn-circle(href='#slide2') &#x276E;
+            a.btn.btn-circle(href='#slide4') &#x276F;
+        #slide4.carousel-item.relative.w-full
+          img.w-full.object-cover(class="border-solid border-8 border-[#FFC9D7]" src='https://i.postimg.cc/9fqDRTzS/13.png.onject-cover')
+          .absolute.flex.justify-between.transform.left-5.right-5(class='-translate-y-1/2 top-1/2')
+            a.btn.btn-circle(href='#slide3') &#x276E;
+            a.btn.btn-circle(href='#slide1') &#x276F;
       .flex.flex-col.justify-center.items-center.text-black.py-4
         h1.font-bold.font-ds.text-3xl(class="lg:text-7xl") Rumah Sayang Bunda
         p.px-8.text-center.mt-4(class="lg:text-xl") Percayakan Kesahatan Bunda & Bayi Bersama Kami
