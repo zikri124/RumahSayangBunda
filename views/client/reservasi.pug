@@ -33,6 +33,10 @@ html
             input.input.input-bordered.w-full.max-w-xs.text-black(name='input_name' required='' type='text', placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md")
           .flex.flex-col.justify-start.w-full(class="lg:max-w-lg md:max-w-md text-red-500")
             label.label
+              span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") Nama Bayi
+            input.input.input-bordered.w-full.max-w-xs.text-black(name='input_baby_name' required='' type='text', placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md")
+          .flex.flex-col.justify-start.w-full(class="lg:max-w-lg md:max-w-md text-red-500")
+            label.label
               span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") No. Hp (Nomer WhatsApp Gunakan Format : 6282333999xxx)
             input.input.input-bordered.w-full.max-w-xs.text-black(name='no_hp' id="phoneNumber" required='' maxlength="13" minlength="10" type='tel'  placeholder='Contoh : 6282333999xxx' class="lg:max-w-lg md:max-w-md")
           .flex.flex-col.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md text-red-500")
@@ -53,7 +57,7 @@ html
               each session1 in sessions
                 - let pilih = false 
                 each datasessionss in sessionsData
-                  if datasessionss.time===session1
+                  if (datasessionss.time===session1)
                     - pilih = true
                     - break
                 if(!pilih)
