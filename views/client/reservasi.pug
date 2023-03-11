@@ -57,7 +57,7 @@ html
               each session1 in sessions
                 - let pilih = false 
                 each datasessionss in sessionsData
-                  if (datasessionss.time===session1)
+                  if (datasessionss.data.time===session1)
                     - pilih = true
                     - break
                 if(!pilih)

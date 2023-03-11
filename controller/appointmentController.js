@@ -50,7 +50,6 @@ module.exports = {
     const serviceData = await commonFunc.getAServiceData(serviceId);
 
     const sessionsData = req.sessionsData;
-    console.log({sessionsData : sessionsData, date : date})
 
     return res.render("client/reservasi", {
       sessionsData: sessionsData,
