@@ -1,7 +1,9 @@
 const firebase = require("../firebase");
 
 const jwt = require("jsonwebtoken");
-const { google } = require("googleapis"); //s
+const {
+  google
+} = require("googleapis"); //s
 const db = firebase.firestore;
 const {
   collection,
@@ -46,6 +48,7 @@ module.exports = {
   viewAppointmentFormUser2: async (req, res) => {
     const date = req.query.date;
     const serviceId = req.query.serviceId;
+    const serviceCare = req.query.serviceCare
 
     const serviceData = await commonFunc.getAServiceData(serviceId);
 
@@ -55,17 +58,19 @@ module.exports = {
       sessionsData: sessionsData,
       date: date,
       serviceId: serviceId,
-      serviceData: serviceData
+      serviceData: serviceData,
+      serviceCare: serviceCare
     });
   },
 
   createAppointment: async (req, res) => {
-    const name = req.body.input_name;
-    const time = req.body.input_time;
-    const date = req.body.input_date;
-    const serviceId = req.body.input_serviceId;
+    const name = req.body.input_name
+    const time = req.body.input_time
+    const date = req.body.input_date
+    const serviceId = req.body.input_serviceId
+    const serviceCare = req.body.serviceCare
+    const address = req.body.input_address
 
-    let ig = "";
     if (req.body.nama_ig != null) {
       ig = req.body.nama_ig;
     }
@@ -78,8 +83,18 @@ module.exports = {
       date: date,
       serviceId: serviceId,
       numWa: req.body.no_hp,
-      igAccount: ig
+      igAccount: req.body.nama_ig,
+      serviceCare: serviceCare,
+      address: address
     };
+
+    let location
+
+    if (address == "") {
+      location = address
+    } else {
+      location = "Rumah Sayang Bunda, Perum Plandi Permai Blok F2, Plandi, Kec. Jombang, Kabupaten Jombang, Jawa Timur 61411, Indonesia"
+    }
 
     try {
       const tokens = req.tokens;
@@ -102,8 +117,7 @@ module.exports = {
         calendarId: "primary",
         requestBody: {
           summary: "Reservasi Layanan Rumah Sayang Bunda",
-          description:
-            "Reservasi layanan " +
+          description: "Reservasi layanan " +
             serviceData.data.name +
             " atas nama " +
             name +
@@ -111,8 +125,7 @@ module.exports = {
             date +
             " pukul " +
             time,
-          location:
-            "Rumah Sayang Bunda, Perum Plandi Permai Blok F2, Plandi, Kec. Jombang, Kabupaten Jombang, Jawa Timur 61411, Indonesia",
+          location: location,
           colorId: "7",
           start: {
             dateTime: date + "T" + time + ":00",
@@ -124,9 +137,14 @@ module.exports = {
           },
           reminders: {
             useDefault: false,
-            overrides: [
-              { method: "popup", minutes: 60 },
-              { method: "popup", minutes: 30 }
+            overrides: [{
+                method: "popup",
+                minutes: 60
+              },
+              {
+                method: "popup",
+                minutes: 30
+              }
             ]
           }
         }
@@ -153,7 +171,7 @@ module.exports = {
   },
 
   viewSuccessPage: async (req, res) => {
-    const appointmentId = req.params.appId; //req.params.appId;
+    const appointmentId = req.params.appId;
 
     const appointmentRef = doc(db, "appointments", appointmentId);
     const appointmentSnap = await getDoc(appointmentRef);
@@ -180,8 +198,8 @@ module.exports = {
     const appointmentData = doc(db, "appointments", appointmentId);
 
     await updateDoc(appointmentData, {
-      status: "cancelled"
-    })
+        status: "cancelled"
+      })
       .then(() => {
         return res.status(200).redirect("/");
       })
@@ -238,10 +256,10 @@ module.exports = {
     const appointmentData = doc(db, "appointments", appointmentId);
 
     await updateDoc(appointmentData, {
-      time: time,
-      date: date,
-      serviceId: serviceId
-    })
+        time: time,
+        date: date,
+        serviceId: serviceId
+      })
       .then(() => {
         return res.status(200).redirect("/admin/appointment");
       })
@@ -256,8 +274,8 @@ module.exports = {
     const appointmentData = doc(db, "appointments", appointmentId);
 
     await updateDoc(appointmentData, {
-      status: "cancelled"
-    })
+        status: "cancelled"
+      })
       .then(() => {
         return res.status(200).redirect("/admin");
       })
@@ -339,8 +357,8 @@ module.exports = {
     const appointmentData = doc(db, "appointments", appointmentId);
 
     await updateDoc(appointmentData, {
-      status: "cancelled"
-    })
+        status: "cancelled"
+      })
       .then(() => {
         return res.json({
           success: true,
