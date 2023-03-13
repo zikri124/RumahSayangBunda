@@ -90,7 +90,7 @@ module.exports = {
 
     let location
 
-    if (address == "") {
+    if (address != "-") {
       location = address
     } else {
       location = "Rumah Sayang Bunda, Perum Plandi Permai Blok F2, Plandi, Kec. Jombang, Kabupaten Jombang, Jawa Timur 61411, Indonesia"
