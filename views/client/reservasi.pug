@@ -27,39 +27,79 @@ html
           input.input.input-bordered.w-full.max-w-xs( disabled=''  value=serviceData.data.name, class="lg:max-w-lg md:max-w-md")
           input.input.hidden.input-bordered.w-full.max-w-xs(name='input_date' value=date, class="lg:max-w-lg md:max-w-md")
           input.input.hidden.input-bordered.w-full.max-w-xs(name='input_serviceId' value=serviceId, class="lg:max-w-lg md:max-w-md")
-          .flex.flex-col.justify-start.w-full(class="lg:max-w-lg md:max-w-md text-red-500")
-            label.label
-              span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") Nama
-            input.input.input-bordered.w-full.max-w-xs.text-black(name='input_name' required='' type='text', placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md")
-          .flex.flex-col.justify-start.w-full(class="lg:max-w-lg md:max-w-md text-red-500")
-            label.label
-              span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") No. Hp (Nomer WhatsApp Gunakan Format : 6282333999xxx)
-            input.input.input-bordered.w-full.max-w-xs.text-black(name='no_hp' id="phoneNumber" required='' maxlength="13" minlength="10" type='tel'  placeholder='Contoh : 6282333999xxx' class="lg:max-w-lg md:max-w-md")
-          .flex.flex-col.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md text-red-500")
-            label.label
-              span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") Tanggal Lahir
-            input.input.input-bordered.w-full.max-w-xs.text-black(name='input_dob' type='date', placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md" required='')
-          .flex.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md")
-            label.label
-              span.label-text Nama Instagram
-          input.input.input-bordered.w-full.max-w-xs(name='nama_ig' type='text', placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md")
-          .flex.flex-col.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md text-red-500")
-            label.label
-              span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") Pilih jam reservasi
-            - let sessions = ["08:00", "09:30", "11:00", "13:00", "14:30", "16:00"]
-            - let telahReservasi = " - Telah Direservasi"
-            select.select.select-bordered.w-full.max-w-xs.text-black(name="input_time" required='' class="lg:max-w-lg md:max-w-md")
-              option(disabled='' selected='' value="") Pilih jam reservasi
-              each session1 in sessions
-                - let pilih = false 
-                each datasessionss in sessionsData
-                  if datasessionss.time===session1
-                    - pilih = true
-                    - break
-                if(!pilih)
-                  option=session1
-                else 
-                  option(disabled)=session1 + telahReservasi
+          - if(serviceCare=="klinik")
+            input.hidden.input.input-bordered.w-full.max-w-xs.text-black(name='input_address' value="-" type='text', placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md")
+            .flex.flex-col.justify-start.w-full(class="lg:max-w-lg md:max-w-md text-red-500")
+              label.label
+                span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") Nama
+              input.input.input-bordered.w-full.max-w-xs.text-black(name='input_name' required='' type='text', placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md")
+            .flex.flex-col.justify-start.w-full(class="lg:max-w-lg md:max-w-md text-red-500")
+              label.label
+                span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") No. Hp (Nomer WhatsApp Gunakan Format : 6282333999xxx)
+              input.input.input-bordered.w-full.max-w-xs.text-black(name='no_hp' id="phoneNumber" required='' maxlength="13" minlength="10" type='tel'  placeholder='Contoh : 6282333999xxx' class="lg:max-w-lg md:max-w-md")
+            .flex.flex-col.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md text-red-500")
+              label.label
+                span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") Tanggal Lahir
+              input.input.input-bordered.w-full.max-w-xs.text-black(name='input_dob' type='date', placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md" required='')
+            .flex.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md")
+              label.label
+                span.label-text Nama Instagram
+            input.input.input-bordered.w-full.max-w-xs(name='nama_ig' type='text', placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md")
+            .flex.flex-col.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md text-red-500")
+              label.label
+                span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") Pilih jam reservasi
+              - let sessions = ["08:00", "09:30", "11:00", "13:00", "14:30", "16:00"]
+              - let telahReservasi = " - Telah Direservasi"
+              select.select.select-bordered.w-full.max-w-xs.text-black(name="input_time" required='' class="lg:max-w-lg md:max-w-md")
+                option(disabled='' selected='' value="") Pilih jam reservasi
+                each session1 in sessions
+                  - let pilih = false 
+                  each datasessionss in sessionsData
+                    if (datasessionss.data.time===session1)
+                      - pilih = true
+                      - break
+                  if(!pilih)
+                    option=session1
+                  else 
+                    option(disabled)=session1 + telahReservasi
+          - else 
+            .flex.flex-col.justify-start.w-full(class="lg:max-w-lg md:max-w-md text-red-500")
+              label.label
+                span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") Nama
+              input.input.input-bordered.w-full.max-w-xs.text-black(name='input_name' required='' type='text', placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md")
+            .flex.flex-col.justify-start.w-full(class="lg:max-w-lg md:max-w-md text-red-500")
+              label.label
+                span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") Alamat Rumah
+              input.input.input-bordered.w-full.max-w-xs.text-black(name='input_address' required='' type='text', placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md")
+            .flex.flex-col.justify-start.w-full(class="lg:max-w-lg md:max-w-md text-red-500")
+              label.label
+                span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") No. Hp (Nomer WhatsApp Gunakan Format : 6282333999xxx)
+              input.input.input-bordered.w-full.max-w-xs.text-black(name='no_hp' id="phoneNumber" required='' maxlength="13" minlength="10" type='tel'  placeholder='Contoh : 6282333999xxx' class="lg:max-w-lg md:max-w-md")
+            .flex.flex-col.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md text-red-500")
+              label.label
+                span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") Tanggal Lahir
+              input.input.input-bordered.w-full.max-w-xs.text-black(name='input_dob' type='date', placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md" required='')
+            .flex.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md")
+              label.label
+                span.label-text Nama Instagram
+            input.input.input-bordered.w-full.max-w-xs(name='nama_ig' type='text', placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md")
+            .flex.flex-col.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md text-red-500")
+              label.label
+                span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") Pilih jam reservasi
+              - let sessions = ["08:00", "09:30", "11:00", "13:00", "14:30", "16:00"]
+              - let telahReservasi = " - Telah Direservasi"
+              select.select.select-bordered.w-full.max-w-xs.text-black(name="input_time" required='' class="lg:max-w-lg md:max-w-md")
+                option(disabled='' selected='' value="") Pilih jam reservasi
+                each session1 in sessions
+                  - let pilih = false 
+                  each datasessionss in sessionsData
+                    if (datasessionss.data.time===session1)
+                      - pilih = true
+                      - break
+                  if(!pilih)
+                    option=session1
+                  else 
+                    option(disabled)=session1 + telahReservasi
           div.flex.flex-row.gap-2.mb-2
             a(href="/appointment/new/form1")     
               label.btn.mt-4(class="bg-[#FFC9D7] border-none text-black hover:text-white hover:bg-[#f391ab] lg:px-20") kembali  

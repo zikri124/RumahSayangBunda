@@ -49,6 +49,13 @@ html
             option(value="" selected="" disabled="") Pilih layanan
             each data in servicesData
               option(value=data.id)= data.data.name
+          .flex.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md")
+            label.label
+              span.label-text(class="after:ml-0.5 after:content-['*'] after:text-red-500") Silahkan pilih layanan Homecare / Datang ke klinik
+          select.select.select-bordered.w-full.max-w-xs(name="serviceCare" class="lg:max-w-lg md:max-w-md" required)
+            option(value="" selected="" disabled="") Pilih layanan
+            option(value="homecare")= `Homecare`
+            option(value="klinik")= `Datang ke Klinik`
           button.btn(class="bg-[#FFC9D7] border-none text-black hover:text-white hover:bg-[#f391ab] mt-4", type="submit") Klik disini untuk reservasi
       include footer.pug
       script(src="/js/home.js")
