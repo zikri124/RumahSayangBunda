@@ -28,6 +28,7 @@ html
           input.input.hidden.input-bordered.w-full.max-w-xs(name='input_date' value=date, class="lg:max-w-lg md:max-w-md")
           input.input.hidden.input-bordered.w-full.max-w-xs(name='input_serviceId' value=serviceId, class="lg:max-w-lg md:max-w-md")
           - if(serviceCare=="klinik")
+            input.hidden(name='serviceCare' value=serviceCare type='text')
             input.hidden.input.input-bordered.w-full.max-w-xs.text-black(name='input_address' value="-" type='text', placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md")
             .flex.flex-col.justify-start.w-full(class="lg:max-w-lg md:max-w-md text-red-500")
               label.label
@@ -63,6 +64,7 @@ html
                   else 
                     option(disabled)=session1 + telahReservasi
           - else 
+            input.hidden(name='serviceCare' value=serviceCare type='text')
             .flex.flex-col.justify-start.w-full(class="lg:max-w-lg md:max-w-md text-red-500")
               label.label
                 span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") Nama
