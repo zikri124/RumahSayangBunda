@@ -52,6 +52,7 @@ html
               th(scope="col") Nama
               th(scope="col") Service Id
               th(scope="col") Status
+              th(scope="col") Tipe Layanan
               th(scope="col") Tanggal Reservasi
               th(scope="col") Waktu
               th(scope="col") Tanggal Lahir
@@ -71,6 +72,7 @@ html
                   td Belum berjalan
                 else 
                   td Dibatalkan
+                td= data.data.serviceCare==="klinik"? "Datang ke Klinik" : `Homecare (${data.data.address})`
                 td= data.data.date
                 td= data.data.time
                 td= data.data.dateOfBirth
