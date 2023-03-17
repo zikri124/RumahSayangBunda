@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const router = require("./router");
 const PORT = process.env.PORT || 8081;
+const cors = require('cors')
 
 const bodyParser = require("body-parser"); 
 const morgan = require("morgan");
@@ -17,6 +18,7 @@ app.use(
     extended: true
   })
 );
+app.use(cors())
 
 app.set("views", __dirname + "/views");
 app.set("view engine", "pug");
