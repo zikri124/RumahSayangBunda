@@ -22,6 +22,7 @@ html
               th(scope="col") Nama
               th(scope="col") Layanan
               th(scope="col") Status
+              th(scope="col") Tipe Layanan
               th(scope="col") Tanggal Reservasi
               th(scope="col") Waktu
               th(scope="col") Tanggal Lahir
@@ -36,6 +37,7 @@ html
                     td= dataServices.data.name
                     - break
                 td= dataAppointment.data.status===true? "selesai" : "belum berjalan"
+                td= dataAppointment.data.serviceCare === "klinik" ? "Datang ke Klinik" : `Homecare (${dataAppointment.data.address})`
                 td= dataAppointment.data.date
                 td= dataAppointment.data.time
                 td= dataAppointment.data.dateOfBirth
