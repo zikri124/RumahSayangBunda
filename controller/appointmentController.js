@@ -52,7 +52,15 @@ module.exports = {
 
     const serviceData = await commonFunc.getAServiceData(serviceId);
 
-    const sessionsData = req.sessionsData;
+    const temp = req.sessionsData;
+    const sessionsData = []
+
+    temp.forEach((sessionData) => {
+      let status = sessionData.data.status 
+      if (status == true || status == false) {
+        sessionsData.push(sessionData)
+      }
+    })
 
     return res.render("client/reservasi", {
       sessionsData: sessionsData,
@@ -347,7 +355,10 @@ module.exports = {
       })
       .catch((error) => {
         console.log(error)
-        return res.status(500)
+        return res.json({
+          success: false,
+          message: error
+        });
       });
   },
 
@@ -367,7 +378,10 @@ module.exports = {
       })
       .catch((error) => {
         console.log(error)
-        return res.status(500)
+        return res.json({
+          success: false,
+          message: error
+        });
       });
   }
 };
