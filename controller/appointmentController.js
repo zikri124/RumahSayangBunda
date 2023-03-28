@@ -314,15 +314,15 @@ module.exports = {
   },
 
   getSessionsAPI: async (req, res) => {
-    const serviceId = req.query.serviceId;
+    // const serviceId = req.query.serviceId;
     const sessionsData = req.sessionsData;
 
-    const serviceData = commonFunc.getAServiceData(serviceId);
+    // const serviceData = commonFunc.getAServiceData(serviceId);
 
     return res.json({
       success: true,
       sessionsData: sessionsData,
-      serviceData: serviceData
+      // serviceData: serviceData
     });
   },
 
