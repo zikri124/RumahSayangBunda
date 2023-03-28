@@ -3,19 +3,14 @@ const firebase = require("../firebase");
 const jwt = require("jsonwebtoken");
 const {
   google
-} = require("googleapis"); //s
+} = require("googleapis");
 const db = firebase.firestore;
 const {
   collection,
-  query,
-  where,
-  getDocs,
   doc,
-  limit,
   addDoc,
   getDoc,
-  updateDoc,
-  deleteDoc
+  updateDoc
 } = require("firebase/firestore");
 
 const gCalendar = require("../middleware/googleCalendar");
@@ -57,7 +52,7 @@ module.exports = {
 
     temp.forEach((sessionData) => {
       let status = sessionData.data.status 
-      if (status == true || status == false) {
+      if (status != "cancelled") {
         sessionsData.push(sessionData)
       }
     })
