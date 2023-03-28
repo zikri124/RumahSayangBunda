@@ -27,7 +27,7 @@ router.get(
 );
 
 router.get(
-  "/appointment/session/:appId",
+  "/appointment/session",
   queryDb.getAppointmentsDataByDate,
   appointmentController.getSessionsAPI
 );
