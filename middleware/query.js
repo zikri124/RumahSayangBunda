@@ -223,7 +223,7 @@ module.exports = {
   getServicesData: async (req, res, next) => {
     const servicesData = [];
 
-    const serviceQuery = query(collection(db, "services"));
+    const serviceQuery = query(collection(db, "services"), orderBy("name"));
     await getDocs(serviceQuery)
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
