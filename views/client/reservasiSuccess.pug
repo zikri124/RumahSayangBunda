@@ -37,6 +37,8 @@ html
                   p.pb-2= "Tanggal Lahir : " + appointmentData.dateOfBirth
                   p.pb-2= "Layanan : " + serviceData.data.name
                   p.pb-2= "Waktu : " + appointmentData.time
+                  p.pb-2= `Tipe Layanan : ${appointmentData.serviceCare === "klinik" ? "Datang Ke Klinik" : appointmentData.ServiceCare}`
+                  p.pb-2= "Alamat : " + appointmentData.address
                 .modal-action
                   label.btn(for='my-modal-6' class="bg-[#FFC9D7] border-none text-black hover:bg-[#f391ab]") Yeay!
       include footer.pug
