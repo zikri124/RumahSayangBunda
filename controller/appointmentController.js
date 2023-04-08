@@ -10,7 +10,8 @@ const {
   doc,
   addDoc,
   getDoc,
-  updateDoc
+  updateDoc,
+  Timestamp
 } = require("firebase/firestore");
 
 const gCalendar = require("../middleware/googleCalendar");
@@ -67,6 +68,7 @@ module.exports = {
   },
 
   createAppointment: async (req, res) => {
+    const timestamp = Timestamp.now()
     const name = req.body.input_name
     const time = req.body.input_time
     const date = req.body.input_date
@@ -88,7 +90,8 @@ module.exports = {
       numWa: req.body.no_hp,
       igAccount: req.body.nama_ig,
       serviceCare: serviceCare,
-      address: address
+      address: address,
+      createdAt: timestamp
     };
 
     let location
@@ -197,11 +200,13 @@ module.exports = {
 
   cancelAppointment: async (req, res) => {
     const appointmentId = req.params.appId;
+    const timestamp = Timestamp.now()
 
     const appointmentData = doc(db, "appointments", appointmentId);
 
     await updateDoc(appointmentData, {
-        status: "cancelled"
+        status: "cancelled",
+        updatedAt: timestamp
       })
       .then(() => {
         return res.status(200).redirect("/");
@@ -255,13 +260,15 @@ module.exports = {
     const serviceId = req.body.serviceId;
     const time = req.body.time;
     const date = req.body.date;
+    const timestamp = Timestamp.now()
 
     const appointmentData = doc(db, "appointments", appointmentId);
 
     await updateDoc(appointmentData, {
         time: time,
         date: date,
-        serviceId: serviceId
+        serviceId: serviceId,
+        updatedAt: timestamp
       })
       .then(() => {
         return res.status(200).redirect("/admin/appointment");
@@ -273,11 +280,13 @@ module.exports = {
 
   cancelAppointmentAsAdmin: async (req, res) => {
     const appointmentId = req.params.appId;
+    const timestamp = Timestamp.now()
 
     const appointmentData = doc(db, "appointments", appointmentId);
 
     await updateDoc(appointmentData, {
-        status: "cancelled"
+        status: "cancelled",
+        updatedAt: timestamp
       })
       .then(() => {
         return res.status(200).redirect("/admin");
@@ -338,6 +347,7 @@ module.exports = {
   editAppointmentAPI: async (req, res) => {
     const appointmentId = req.params.appId;
     const updatedData = req.body;
+    const timestamp = Timestamp.now()
 
     const appointmentData = doc(db, "appointments", appointmentId);
 
@@ -345,7 +355,8 @@ module.exports = {
       .then(() => {
         return res.json({
           success: true,
-          message: "Update data success"
+          message: "Update data success",
+          updatedAt: timestamp
         });
       })
       .catch((error) => {
@@ -359,11 +370,13 @@ module.exports = {
 
   cancelAppointmentAsAdminAPI: async (req, res) => {
     const appointmentId = req.params.appId;
+    const timestamp = Timestamp.now()
 
     const appointmentData = doc(db, "appointments", appointmentId);
 
     await updateDoc(appointmentData, {
-        status: "cancelled"
+        status: "cancelled",
+        updatedAt: timestamp
       })
       .then(() => {
         return res.json({
