@@ -5,7 +5,8 @@ const {
   doc,
   addDoc,
   updateDoc,
-  deleteDoc
+  deleteDoc,
+  Timestamp
 } = require("firebase/firestore");
 
 module.exports = {
@@ -18,11 +19,14 @@ module.exports = {
   },
 
   addService: async (req, res) => {
+    const timestamp = Timestamp.now()
+    
     const serviceData = {
       name: req.body.name,
       price: req.body.price,
       room: req.body.room,
-      description: req.body.description
+      description: req.body.description,
+      createdAt: timestamp
     };
 
     await addDoc(collection(db, "services"), serviceData)
@@ -36,6 +40,7 @@ module.exports = {
 
   updateService: async (req, res) => {
     const serviceId = req.params.serviceId;
+    const timestamp = Timestamp.now()
 
     const serviceData = doc(db, "services", serviceId);
 
@@ -43,7 +48,8 @@ module.exports = {
       name: req.body.name,
       price: req.body.price,
       room: req.body.room,
-      description: req.body.description
+      description: req.body.description,
+      updatedAt: timestamp
     })
       .then(() => {
         return res.cookie("data", "").status(200).redirect("/admin/service");
@@ -81,11 +87,14 @@ module.exports = {
   },
 
   createServiceAPI: async (req, res) => {
+    const timestamp = Timestamp.now()
+    
     const serviceData = {
       name: req.body.name,
       price: req.body.price,
       room: req.body.room,
-      description: req.body.description
+      description: req.body.description,
+      createdAt: timestamp
     };
 
     await addDoc(collection(db, "services"), serviceData)
@@ -103,6 +112,7 @@ module.exports = {
 
   updateServiceAPI: async (req, res) => {
     const serviceId = req.params.serviceId;
+    const timestamp = Timestamp.now()
 
     const serviceData = doc(db, "services", serviceId);
 
@@ -110,7 +120,8 @@ module.exports = {
       name: req.body.name,
       price: req.body.price,
       room: req.body.room,
-      description: req.body.description
+      description: req.body.description,
+      updatedAt: timestamp
     })
       .then(async () => {
         return res.json({
