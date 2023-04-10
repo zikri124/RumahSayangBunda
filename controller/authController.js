@@ -96,8 +96,11 @@ module.exports = {
         } else if (errorMessage == "Firebase: Error (auth/wrong-password).") {
           message = "Password yang dimasukkan salah";
         }
-        console.log(error)
-        return res.status(401)
+        
+        return res.json({
+          success: false,
+          message: message
+        });
       });
   },
 
