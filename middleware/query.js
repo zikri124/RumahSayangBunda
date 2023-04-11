@@ -265,8 +265,11 @@ module.exports = {
   getSessions: async (req, res, next) => {
     const sessions = [];
 
-    const serviceQuery = query(collection(db, "sessions"), orderBy("time"));
-    await getDocs(serviceQuery)
+    const sessionQuery = query(
+      collection(db, "sessions"),
+      orderBy("time")
+    );
+    await getDocs(sessionQuery)
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           const session = {

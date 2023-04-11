@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { getGTokens } = require("../middleware");
+const {
+  getGTokens
+} = require("../middleware");
 
 const queryDb = require("../middleware/query");
 const pageController = require("../controller/pageController");
@@ -12,11 +14,15 @@ router.get("/oauthcallback", appointmentController.processGoogleLogin);
 
 router.get("/privacy", pageController.viewPrivacyPolicyPage);
 
-router.get("/appointment/new/form1", getGTokens, queryDb.getServicesData, appointmentController.viewSelectDateService);
+router.get("/appointment/new/form1", 
+// getGTokens, 
+queryDb.getServicesData, appointmentController.viewSelectDateService);
 
-router.get("/appointment/new/form2", queryDb.getAppointmentsDataByDate, appointmentController.viewAppointmentFormUser2);
+router.get("/appointment/new/form2", queryDb.getAppointmentsDataByDate, queryDb.getSessions, appointmentController.viewAppointmentFormUser2);
 
-router.post("/appointment/new/form2", getGTokens, appointmentController.createAppointment);
+router.post("/appointment/new/form2", 
+// getGTokens, 
+appointmentController.createAppointment);
 
 router.get("/appointment/success/:appId", appointmentController.viewSuccessPage);
 
