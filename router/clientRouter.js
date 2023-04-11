@@ -21,6 +21,7 @@ router.get(
 
 router.get(
   "/appointment/new/form2",
+  queryDb.getSessions,
   queryDb.getAppointmentsDataByDate,
   appointmentController.viewAppointmentFormUser2
 );

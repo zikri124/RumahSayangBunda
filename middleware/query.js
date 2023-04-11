@@ -260,5 +260,26 @@ module.exports = {
 
     req.serviceData = service;
     next();
+  },
+
+  getSessions: async (req, res, next) => {
+    const sessions = [];
+
+    const serviceQuery = query(collection(db, "sessions"), orderBy("time"));
+    await getDocs(serviceQuery)
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          const session = {
+            id: doc.id,
+            data: doc.data()
+          };
+          sessions.push(session);
+        });
+        req.sessions = sessions;
+        next();
+      })
+      .catch((error) => {
+        return console.log(error);
+      });
   }
 };
