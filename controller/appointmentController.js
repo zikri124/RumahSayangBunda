@@ -396,12 +396,21 @@ module.exports = {
       });
   },
 
-  getSessionsTimeAPI: async (req, res) => {
-    const sessions = req.sessions
+  getSessionsNTimeAPI: (req, res) => {
+    const sessionsData = req.sessionsData;
+    const sessions = req.response.sessions;
 
     return res.json({
-      success: true,
+      sessionsData: sessionsData,
       sessions: sessions
+    });
+  },
+
+  getSessionsTimeAPI: (req, res) => {
+    const response = req.response
+
+    return res.json({
+      response: response
     });
   }
 };

@@ -166,8 +166,8 @@ module.exports = {
 
   getAppointmentsDataByDate: async (req, res, next) => {
     console.log(req.query);
-    if (req.query.date == null || req.query.serviceId == null) {
-      req.sessionsData = null;
+    if (req.query.date == null || req.query.serviceId == null || req.query.date == undefined || req.query.serviceId == undefined) {
+      req.sessionsData = [];
       next();
     } else {
       const date = req.query.date;
@@ -278,11 +278,20 @@ module.exports = {
           };
           sessions.push(session);
         });
-        req.sessions = sessions;
+        const response = {
+          sessions: sessions,
+          success: true
+        }
+        req.response = response
         next();
       })
       .catch((error) => {
-        return console.log(error);
+        const response = {
+          error: error,
+          success: false
+        }
+        req.response = response
+        next();
       });
   }
 };
