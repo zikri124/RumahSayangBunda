@@ -44,7 +44,8 @@ module.exports = {
   viewAppointmentFormUser2: async (req, res) => {
     const date = req.query.date;
     const serviceId = req.query.serviceId;
-    const serviceCare = req.query.serviceCare
+    const serviceCare = req.query.serviceCare;
+    const sessions = req.sessions;
 
     const serviceData = await commonFunc.getAServiceData(serviceId);
 
@@ -63,7 +64,8 @@ module.exports = {
       date: date,
       serviceId: serviceId,
       serviceData: serviceData,
-      serviceCare: serviceCare
+      serviceCare: serviceCare,
+      sessions: sessions
     });
   },
 
@@ -91,7 +93,8 @@ module.exports = {
       igAccount: req.body.nama_ig,
       serviceCare: serviceCare,
       address: address,
-      createdAt: timestamp
+      createdAt: timestamp,
+      serviceName: req.body.serviceName
     };
 
     let location
@@ -250,7 +253,7 @@ module.exports = {
         serviceData: serviceData,
         appointmentData: appointmentData,
         date: date,
-        serviceId: serviceId
+        serviceId: serviceId,
       });
     }
   },
@@ -391,5 +394,14 @@ module.exports = {
           message: error
         });
       });
+  },
+
+  getSessionsTimeAPI: async (req, res) => {
+    const sessions = req.sessions
+
+    return res.json({
+      success: true,
+      sessions: sessions
+    });
   }
 };
