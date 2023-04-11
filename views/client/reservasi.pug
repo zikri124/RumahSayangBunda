@@ -63,6 +63,7 @@ html
                     option=session.data.time
                   else 
                     option(disabled)=session.data.time + telahReservasi
+                    option= session.data.amount
           - else 
             input.hidden(name='serviceCare' value=serviceCare type='text')
             .flex.flex-col.justify-start.w-full(class="lg:max-w-lg md:max-w-md text-red-500")
