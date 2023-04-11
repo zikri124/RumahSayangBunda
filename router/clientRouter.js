@@ -14,36 +14,23 @@ router.get("/privacy", pageController.viewPrivacyPolicyPage);
 
 router.get(
   "/appointment/new/form1",
-  getGTokens,
+  // getGTokens,
   queryDb.getServicesData,
   appointmentController.viewSelectDateService
 );
 
-router.get(
-  "/appointment/new/form2",
-  queryDb.getAppointmentsDataByDate,
-  appointmentController.viewAppointmentFormUser2
-);
+router.get("/appointment/new/form2", queryDb.getAppointmentsDataByDate, appointmentController.viewAppointmentFormUser2);
 
 router.post(
   "/appointment/new/form2",
-  getGTokens,
+  // getGTokens,
   appointmentController.createAppointment
 );
 
-router.get(
-  "/appointment/success/:appId",
-  appointmentController.viewSuccessPage
-);
+router.get("/appointment/success/:appId", appointmentController.viewSuccessPage);
 
-router.get(
-  "/appointment/success/:appId",
-  appointmentController.viewSuccessPage
-);
+router.get("/appointment/success/:appId", appointmentController.viewSuccessPage);
 
-router.post(
-  "/appointment/cancel/:appId",
-  appointmentController.cancelAppointment
-);
+router.post("/appointment/cancel/:appId", appointmentController.cancelAppointment);
 
 module.exports = router;
