@@ -54,16 +54,18 @@ html
               select.select.select-bordered.w-full.max-w-xs.text-black(name="input_time" required='' class="lg:max-w-lg md:max-w-md")
                 option(disabled='' selected='' value="") Pilih jam reservasi
                 each session in sessions
-                  - let pilih = false 
+                  - let pilih = false
+                  - let tempAmount = 0;
                   each datasessionss in sessionsData
-                    if (datasessionss.data.time===session.data.time && session.data.amount === 2)
-                      - pilih = true
-                      - break
-                  if(!pilih)
-                    option=session.data.time
-                  else 
+                    - if (datasessionss.data.time == session.data.time)
+                      - tempAmount++;
+                      if(tempAmount == 2)
+                        - pilih = true
+                        - break
+                  - if(!pilih)
+                    option= session.data.time
+                  - else 
                     option(disabled)=session.data.time + telahReservasi
-                    option= session.data.amount
           - else 
             input.hidden(name='serviceCare' value=serviceCare type='text')
             .flex.flex-col.justify-start.w-full(class="lg:max-w-lg md:max-w-md text-red-500")
@@ -93,14 +95,17 @@ html
               select.select.select-bordered.w-full.max-w-xs.text-black(name="input_time" required='' class="lg:max-w-lg md:max-w-md")
                 option(disabled='' selected='' value="") Pilih jam reservasi
                 each session in sessions
-                  - let pilih = false 
+                  - let pilih = false
+                  - let tempAmount = 0;
                   each datasessionss in sessionsData
-                    if (datasessionss.data.time===session.data.time && session.data.amount === 2)
-                      - pilih = true
-                      - break
-                  if(!pilih)
-                    option=session.data.time
-                  else 
+                    - if (datasessionss.data.time == session.data.time)
+                      - tempAmount++;
+                      if(tempAmount == 2)
+                        - pilih = true
+                        - break
+                  - if(!pilih)
+                    option= session.data.time
+                  - else 
                     option(disabled)=session.data.time + telahReservasi
           div.flex.flex-row.gap-2.mb-2
             a(href="/appointment/new/form1")     
