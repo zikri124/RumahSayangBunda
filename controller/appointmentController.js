@@ -45,19 +45,25 @@ module.exports = {
     const date = req.query.date;
     const serviceId = req.query.serviceId;
     const serviceCare = req.query.serviceCare;
-    const sessions = req.sessions;
+    const sessions = req.response.sessions;
 
     const serviceData = await commonFunc.getAServiceData(serviceId);
 
     const temp = req.sessionsData;
-    const sessionsData = []
+    const sessionsDataTemp = []
+    const onGoingVisits = req.onGoingVisits
 
     temp.forEach((sessionData) => {
       let status = sessionData.data.status 
-      if (status != "cancelled") {
-        sessionsData.push(sessionData)
+      if (status == false) {
+        sessionsDataTemp.push(sessionData)
       }
     })
+
+    const sessionsData = sessionsDataTemp.concat(onGoingVisits)
+
+    console.log(sessionsData)
+    console.log(sessions)
 
     return res.render("client/reservasi", {
       sessionsData: sessionsData,
@@ -321,15 +327,11 @@ module.exports = {
   },
 
   getSessionsAPI: async (req, res) => {
-    // const serviceId = req.query.serviceId;
     const sessionsData = req.sessionsData;
-
-    // const serviceData = commonFunc.getAServiceData(serviceId);
 
     return res.json({
       success: true,
-      sessionsData: sessionsData,
-      // serviceData: serviceData
+      sessionsData: sessionsData
     });
   },
 
@@ -413,4 +415,4 @@ module.exports = {
       response: response
     });
   }
-};
+}

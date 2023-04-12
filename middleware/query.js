@@ -1,5 +1,6 @@
 const firebase = require("../firebase");
 const db = firebase.firestore;
+const fetch = require("node-fetch");
 const {
   collection,
   query,
@@ -7,8 +8,11 @@ const {
   getDocs,
   doc,
   getDoc,
-  orderBy
+  orderBy,
+  Timestamp
 } = require("firebase/firestore");
+
+const apiUrl = process.env.apiURL;
 
 module.exports = {
   getAnUserData: async (req, res, next) => {
@@ -82,7 +86,7 @@ module.exports = {
     const appointmentsData = [];
     const timeCode = req.params.timeCode;
 
-    const dateClass = new Date();
+    const dateClass = Timestamp.now().toDate()
     let month = dateClass.getMonth() + 1;
     if (month < 10) {
       month = "0" + month;
@@ -129,7 +133,7 @@ module.exports = {
   getAppointmentsDataToday: async (req, res, next) => {
     const appointmentsData = [];
 
-    const dateClass = new Date();
+    const dateClass = Timestamp.now().toDate()
     let month = dateClass.getMonth() + 1;
     if (month < 10) {
       month = "0" + month;
@@ -293,5 +297,24 @@ module.exports = {
         req.response = response
         next();
       });
+  },
+
+  getOnGoingVisit: async (req, res, next) => {
+    const date = req.query.date;
+    const serviceId = req.query.serviceId;
+    await fetch(apiUrl + "/api/visit?date=" + date + "&serviceId=" + serviceId, {
+      method: "GET",
+      // headers: {
+      //   Authorization: "bearer " + req.token,
+      // },
+    })
+    .then((response) => response.json())
+    .then((body) => {
+      req.onGoingVisits = body.onGoingVisits;
+      next();
+    })
+    .catch((err) => {
+      return console.log(err);
+    });
   }
 };

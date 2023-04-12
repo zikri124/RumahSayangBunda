@@ -5,7 +5,8 @@ const {
   collection,
   query,
   where,
-  getDocs
+  getDocs,
+  Timestamp
 } = require("firebase/firestore");
 
 const commonFunction = require("../middleware/commonFunctions")
@@ -25,7 +26,7 @@ module.exports = {
     const queryData = []
 
     const currentDate = commonFunction.getCurrentDate()
-    const date2 = new Date()
+    const date2 = Timestamp.now().toDate()
     date2.setDate(date2.getDate() - 14)
 
     let month = date2.getMonth() + 1;

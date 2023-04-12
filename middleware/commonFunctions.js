@@ -1,14 +1,9 @@
 const firebase = require("../firebase");
 const db = firebase.firestore;
 const {
-  collection,
-  query,
-  where,
-  getDocs,
-  addDoc,
   doc,
-  limit,
-  getDoc
+  getDoc,
+  Timestamp
 } = require("firebase/firestore");
 
 module.exports = {
@@ -29,7 +24,7 @@ module.exports = {
   },
 
   getCurrentDate: () => {
-    const dateClass = new Date();
+    const dateClass = Timestamp.now().toDate()
     let month = dateClass.getMonth() + 1;
     if (month < 10) {
       month = "0" + month;
@@ -50,7 +45,7 @@ module.exports = {
   },
 
   getAge: (customerDOB) => {
-    const date = new Date();
+    const date = Timestamp.now().toDate()
     const dateToCalculate = new Date(customerDOB);
 
     var month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
