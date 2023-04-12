@@ -16,7 +16,7 @@ router.get("/privacy", pageController.viewPrivacyPolicyPage)
 
 router.get(
   "/appointment/new/form1",
-  getGTokens,
+  // getGTokens,
   queryDb.getServicesData,
   appointmentController.viewSelectDateService
 )
@@ -30,7 +30,7 @@ router.get("/appointment/new/form2",
 
 router.post(
   "/appointment/new/form2",
-  getGTokens,
+  // getGTokens,
   appointmentController.createAppointment
 )
 
