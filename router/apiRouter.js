@@ -54,6 +54,19 @@ router.put(
   appointmentController.cancelAppointmentAsAdminAPI
 );
 
+router.get(
+  "/session",
+  queryDb.getSessions,
+  appointmentController.getSessionsTimeAPI
+)
+
+router.get(
+  "/sessionsntime",
+  queryDb.getSessions,
+  queryDb.getAppointmentsDataByDate,
+  appointmentController.getSessionsNTimeAPI
+)
+
 //service
 router.get(
   "/service",
