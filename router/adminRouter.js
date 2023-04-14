@@ -40,6 +40,7 @@ router.get(
 
 router.post(
   "/appointment/update/:appId",
+  queryDb.getAnAppointmentData,
   appointmentController.editAppointment
 );
 
