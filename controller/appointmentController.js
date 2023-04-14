@@ -54,7 +54,7 @@ module.exports = {
     const onGoingVisits = req.onGoingVisits
 
     temp.forEach((sessionData) => {
-      let status = sessionData.data.status 
+      let status = sessionData.data.status
       if (status == false) {
         sessionsDataTemp.push(sessionData)
       }
@@ -271,20 +271,26 @@ module.exports = {
     const date = req.body.date;
     const timestamp = Timestamp.now()
 
-    const appointmentData = doc(db, "appointments", appointmentId);
+    const appointmentData = req.appointmentData
 
-    await updateDoc(appointmentData, {
-        time: time,
-        date: date,
-        serviceId: serviceId,
-        updatedAt: timestamp
-      })
-      .then(() => {
-        return res.status(200).redirect("/admin/appointment");
-      })
-      .catch((error) => {
-        return console.log(error);
-      });
+    const appointment = doc(db, "appointments", appointmentId);
+
+    if (appointmentData.data.status == false) {
+      await updateDoc(appointment, {
+          time: time,
+          date: date,
+          serviceId: serviceId,
+          updatedAt: timestamp
+        })
+        .then(() => {
+          return res.status(200).redirect("/admin/appointment");
+        })
+        .catch((error) => {
+          return console.log(error);
+        });
+    } else {
+      res.send("Reservasi yang telah di proses atau dibatalkan tidak bisa di ubah")
+    }
   },
 
   cancelAppointmentAsAdmin: async (req, res) => {
@@ -353,24 +359,32 @@ module.exports = {
     const appointmentId = req.params.appId;
     const updatedData = req.body;
     const timestamp = Timestamp.now()
+    const appointmentData = req.appointmentData
 
-    const appointmentData = doc(db, "appointments", appointmentId);
+    const appointment = doc(db, "appointments", appointmentId);
 
-    await updateDoc(appointmentData, updatedData)
-      .then(() => {
-        return res.json({
-          success: true,
-          message: "Update data success",
-          updatedAt: timestamp
+    if (appointmentData.data.status == false) {
+      await updateDoc(appointment, updatedData)
+        .then(() => {
+          return res.json({
+            success: true,
+            message: "Update data success",
+            updatedAt: timestamp
+          });
+        })
+        .catch((error) => {
+          console.log(error)
+          return res.json({
+            success: false,
+            message: "Ada error nih : \n" + error
+          });
         });
-      })
-      .catch((error) => {
-        console.log(error)
-        return res.json({
-          success: false,
-          message: error
-        });
+    } else {
+      return res.json({
+        success: false,
+        message: "Reservasi yang telah di proses atau dibatalkan tidak bisa di ubah"
       });
+    }
   },
 
   cancelAppointmentAsAdminAPI: async (req, res) => {
