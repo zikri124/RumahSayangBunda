@@ -83,10 +83,7 @@ module.exports = {
     const serviceId = req.body.input_serviceId
     const serviceCare = req.body.serviceCare
     const address = req.body.input_address
-
-    if (req.body.nama_ig != null) {
-      ig = req.body.nama_ig;
-    }
+    const serviceName = req.body.serviceName
 
     const appointmentData = {
       name: name,
@@ -100,7 +97,8 @@ module.exports = {
       serviceCare: serviceCare,
       address: address,
       createdAt: timestamp,
-      serviceName: req.body.serviceName
+      serviceName: serviceName,
+      keluhan: req.body.keluhan
     };
 
     let location
@@ -124,8 +122,6 @@ module.exports = {
         hours = "0" + hours;
       }
 
-      const serviceData = await commonFunc.getAServiceData(serviceId);
-
       const calendar = google.calendar("v3");
       let response = await calendar.events.insert({
         auth: oauth2Client,
@@ -133,7 +129,7 @@ module.exports = {
         requestBody: {
           summary: "Reservasi Layanan Rumah Sayang Bunda",
           description: "Reservasi layanan " +
-            serviceData.data.name +
+            serviceName +
             " atas nama " +
             name +
             " pada " +
