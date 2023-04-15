@@ -4128,6 +4128,11 @@ html {
   margin-bottom: 1rem;
 }
 
+.my-12 {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -4146,11 +4151,6 @@ html {
 .mx-4 {
   margin-left: 1rem;
   margin-right: 1rem;
-}
-
-.my-12 {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
 }
 
 .mt-8 {
@@ -4193,8 +4193,8 @@ html {
   margin-bottom: 0.5rem;
 }
 
-.mb-10 {
-  margin-bottom: 2.5rem;
+.mb-44 {
+  margin-bottom: 11rem;
 }
 
 .mb-3 {
@@ -4203,6 +4203,10 @@ html {
 
 .mt-12 {
   margin-top: 3rem;
+}
+
+.mb-10 {
+  margin-bottom: 2.5rem;
 }
 
 .mb-0 {
@@ -4279,10 +4283,6 @@ html {
 
 .mb-40 {
   margin-bottom: 10rem;
-}
-
-.mb-44 {
-  margin-bottom: 11rem;
 }
 
 .block {

@@ -49,7 +49,7 @@ html
               input.input.input-bordered.w-full.max-w-xs(name='nama_ig' type='text', placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md")
             .flex.flex-col.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md")
               label.label
-                span.label-text Keluhan
+                span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") Keluhan
               input.input.input-bordered.w-full.max-w-xs(name='keluhan' type='text', placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md")
             .flex.flex-col.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md text-red-500")
               label.label
@@ -57,7 +57,7 @@ html
               - let telahReservasi= " - Telah Direservasi"
               select.select.select-bordered.w-full.max-w-xs.text-black(name="input_time" required='' class="lg:max-w-lg md:max-w-md")
                 option(disabled='' selected='' value="") Pilih jam reservasi
-                - if(serviceId !== "fVRk8S4YUjpohVYVIWq1" && serviceId !== "FXi2eFE6HaD29RxPcilp" && serviceId !== "cuBccAgix7TClEJXvtiQ" && serviceId !== "rdz21LiCNxTwhpcKxXyq")
+                - if(serviceId !== "fVRk8S4YUjpohVYVIWq1" && serviceId !== "FXi2eFE6HaD29RxPcilp" && serviceId !== "cuBccAgix7TClEJXvtiQ" && serviceId !== "rdz21LiCNxTwhpcKxXyq" && serviceId !== "Nvyd13i7snjgvdZBdvkA")
                   each session in sessions
                     - let pilih = false
                     - let tempAmount = 0;
@@ -85,7 +85,7 @@ html
                       option= session.data.time
                     - else 
                       option(disabled)=session.data.time + telahReservasi
-          - else if(serviceCare == "homecare" && serviceId == "fVRk8S4YUjpohVYVIWq1") 
+          - else if(serviceCare == "homecare" && serviceId == "fVRk8S4YUjpohVYVIWq1" || serviceId == "Nvyd13i7snjgvdZBdvkA") 
             p.my-12.font-bold.text-2xl.text-center(class="max-w-md") Mohon maaf layanan baby spa hanya dapat dilakukan di klinik saja
           - else 
             input.hidden(name='serviceCare' value=serviceCare type='text')
@@ -111,7 +111,7 @@ html
               input.input.input-bordered.w-full.max-w-xs(name='nama_ig' type='text', placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md")
             .flex.flex-col.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md")
               label.label
-                span.label-text Keluhan
+                span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") Keluhan
               input.input.input-bordered.w-full.max-w-xs(name='keluhan' type='text', placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md")
             .flex.flex-col.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md text-red-500")
               label.label
@@ -119,7 +119,7 @@ html
               - let telahReservasi2 = " - Telah Direservasi"
               select.select.select-bordered.w-full.max-w-xs.text-black(name="input_time" required='' class="lg:max-w-lg md:max-w-md")
                 option(disabled='' selected='' value="") Pilih jam reservasi
-                - if(serviceId !== "fVRk8S4YUjpohVYVIWq1" && serviceId !== "FXi2eFE6HaD29RxPcilp" && serviceId !== "cuBccAgix7TClEJXvtiQ" && serviceId !== "rdz21LiCNxTwhpcKxXyq")
+                - if(serviceId !== "fVRk8S4YUjpohVYVIWq1" && serviceId !== "FXi2eFE6HaD29RxPcilp" && serviceId !== "cuBccAgix7TClEJXvtiQ" && serviceId !== "rdz21LiCNxTwhpcKxXyq" && serviceId !== "Nvyd13i7snjgvdZBdvkA")
                   each session in sessions
                     - let pilih = false
                     - let tempAmount = 0;
@@ -150,7 +150,7 @@ html
           div.flex.flex-row.gap-2.mb-2
             a(href="/appointment/new/form1")     
               label.btn.mt-4(class="bg-[#FFC9D7] border-none text-black hover:text-white hover:bg-[#f391ab] lg:px-20") kembali  
-            - if(serviceCare == "homecare" && serviceId == "fVRk8S4YUjpohVYVIWq1")
+            - if(serviceCare == "homecare" && serviceId == "fVRk8S4YUjpohVYVIWq1" || serviceId == "Nvyd13i7snjgvdZBdvkA")
               div.mb-44
             - else 
               button.btn.mt-4(type='submit' class="bg-[#FFC9D7] border-none text-black hover:text-white hover:bg-[#f391ab] lg:px-20") submit
