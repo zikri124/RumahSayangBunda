@@ -43,17 +43,6 @@ html
               label.label
                 span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") Tanggal Lahir
               input.input.input-bordered.w-full.max-w-xs.text-black(name='input_dob' type='date', placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md" required='')
-            - if(serviceId == "rdz21LiCNxTwhpcKxXyq")
-              .flex.flex-col.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md text-red-500")
-                label.label
-                  span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") Kriteria Umur
-                select.select.select-bordered.w-full.max-w-xs.text-black(name="kriteria_umur" required='' class="lg:max-w-lg md:max-w-md")
-                  option(disabled='' selected='') Pilih Kriteria Umur 
-                  option(value="1 - 12 Bulan") 1 - 12 Bulan
-                  option(value="1 - 3 Tahun") 1 - 3 Tahun
-                  option(value="4 - 6 Tahun") 4 - 6 Tahun
-            - else 
-              input.hidden(type="text" name="kriteria_umur" value="-")
             .flex.flex-col.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md")
               label.label
                 span.label-text Nama Instagram
@@ -61,7 +50,7 @@ html
             .flex.flex-col.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md text-red-500")
               label.label
                 span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") Keluhan
-              input.input.input-bordered.w-full.max-w-xs(name='keluhan' type='text', placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md" required='')
+              input.input.input-bordered.w-full.max-w-xs.text-black(name='keluhan' type='text', placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md" required='')
             .flex.flex-col.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md text-red-500")
               label.label
                 span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") Pilih jam reservasi
@@ -116,17 +105,6 @@ html
               label.label
                 span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") Tanggal Lahir
               input.input.input-bordered.w-full.max-w-xs.text-black(name='input_dob' type='date', placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md" required='')
-            - if(serviceId == "rdz21LiCNxTwhpcKxXyq")
-              .flex.flex-col.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md text-red-500")
-                label.label
-                  span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") Kriteria Umur
-                select.select.select-bordered.w-full.max-w-xs.text-black(name="kriteria_umur" required='' class="lg:max-w-lg md:max-w-md")
-                  option(disabled='' selected='') Pilih Kriteria Umur 
-                  option(value="1 - 12 Bulan") 1 - 12 Bulan
-                  option(value="1 - 3 Tahun") 1 - 3 Tahun
-                  option(value="4 - 6 Tahun") 4 - 6 Tahun
-            - else 
-              input.hidden(type="text" name="kriteria_umur" value="-")
             .flex.flex-col.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md")
               label.label
                 span.label-text Nama Instagram
@@ -134,7 +112,7 @@ html
             .flex.flex-col.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md text-red-500")
               label.label
                 span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") Keluhan
-              input.input.input-bordered.w-full.max-w-xs(name='keluhan' type='text', placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md" required='')
+              input.input.input-bordered.w-full.max-w-xs.text-black(name='keluhan' type='text', placeholder='Ketik Disini' class="lg:max-w-lg md:max-w-md" required='')
             .flex.flex-col.justify-start.w-full(class="md:justify-start lg:max-w-lg md:max-w-md text-red-500")
               label.label
                 span.label-text(class="after:content-['*'] after:ml-0.5 after:text-red-500 text-black") Pilih jam reservasi
