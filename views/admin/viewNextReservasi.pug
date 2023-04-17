@@ -51,6 +51,7 @@ html
               th(scope="col") No
               th(scope="col") Nama
               th(scope="col") Layanan
+              th(scope="col") No Hp
               th(scope="col") Status
               th(scope="col") Tipe Layanan
               th(scope="col") Tanggal Reservasi
@@ -62,10 +63,8 @@ html
               tr
                 th= i++
                 td= data.data.name
-                each dataServices in servicesData
-                  if data.data.serviceId===dataServices.id
-                    td= dataServices.data.name
-                    - break
+                td= data.data.serviceName 
+                td= data.data.numWa
                 if data.data.status===true
                   td Selesai
                 else if data.data.status===false
