@@ -93,7 +93,7 @@ module.exports = {
       date: date,
       serviceId: serviceId,
       numWa: req.body.no_hp,
-      igAccount: req.body.nama_ig,
+      igAccount: req.body.igAcc,
       serviceCare: serviceCare,
       address: address,
       createdAt: timestamp,
