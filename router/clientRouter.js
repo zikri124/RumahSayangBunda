@@ -10,6 +10,10 @@ router.get("/", queryDb.getServicesData, pageController.viewUserLandingPage);
 
 router.get("/oauthcallback", appointmentController.processGoogleLogin);
 
+router.get("/maintenance", (req, res) => {
+    res.render("client/maintenance")
+})
+
 router.get("/privacy", pageController.viewPrivacyPolicyPage);
 
 router.get("/appointment/new/form1", getGTokens, queryDb.getServicesData, appointmentController.viewSelectDateService);
