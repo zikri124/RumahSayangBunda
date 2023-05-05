@@ -351,6 +351,54 @@ module.exports = {
     });
   },
 
+  createAppointmentAPI: async (req, res) => {
+    const name = req.body.input_name
+    const time = req.body.input_time
+    const date = req.body.input_date
+    const serviceId = req.body.input_serviceId
+    const serviceCare = req.body.serviceCare
+    const address = req.body.input_address
+    const serviceName = req.body.serviceName
+
+    const appointmentData = {
+      name: name,
+      status: false,
+      time: time,
+      dateOfBirth: req.body.input_dob,
+      date: date,
+      serviceId: serviceId,
+      numWa: req.body.no_hp,
+      igAccount: req.body.igAcc,
+      serviceCare: serviceCare,
+      address: address,
+      createdAt: createdAt,
+      serviceName: serviceName,
+      keluhan: req.body.keluhan
+    };
+
+    let location
+
+    if (address != "-") {
+      location = address
+    } else {
+      location = "Rumah Sayang Bunda, Perum Plandi Permai Blok F2, Plandi, Kec. Jombang, Kabupaten Jombang, Jawa Timur 61411, Indonesia"
+    }
+
+    await addDoc(collection(db, "appointments"), appointmentData)
+      .then(() => {
+        return res.json({
+          success: true,
+          message: "Create appointment success"
+        });
+      })
+      .catch((err) => {
+        return res.json({
+          success: false,
+          message: "Ada error nih : \n" + err
+        });
+      });
+  },
+
   editAppointmentAPI: async (req, res) => {
     const appointmentId = req.params.appId;
     const updatedData = req.body;
