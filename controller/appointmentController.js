@@ -371,7 +371,7 @@ module.exports = {
       igAccount: req.body.igAcc,
       serviceCare: serviceCare,
       address: address,
-      createdAt: createdAt,
+      createdAt: Timestamp.now(),
       serviceName: serviceName,
       keluhan: req.body.keluhan
     };
