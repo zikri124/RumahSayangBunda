@@ -44,6 +44,11 @@ router.get(
   appointmentController.getAnAppointmentAPI
 );
 
+router.post(
+  "/appointment/new",
+  appointmentController.createAppointmentAPI
+);
+
 router.put(
   "/appointment/update/:appId",
   queryDb.getAnAppointmentData,
